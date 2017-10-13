@@ -1,4 +1,4 @@
-void chasym()
+void projection_W_Ach()
 {
 //=========Macro generated from canvas: chasym/
 //=========  (Fri Oct 13 14:32:17 2017) by ROOT version6.04/02

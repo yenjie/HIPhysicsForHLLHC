@@ -1,4 +1,4 @@
-void A3()
+void projection_W_AFB()
 {
 //=========Macro generated from canvas: A3/
 //=========  (Fri Oct 13 14:32:17 2017) by ROOT version6.04/02
