@@ -39,7 +39,7 @@ void projection_psi2S()
    pad1_PbPb->SetFrameBorderMode(0);
    
    TH1D *frame_a1efb00__1 = new TH1D("frame_a1efb00__1","",46,2.2,4.5);
-   frame_a1efb00__1->SetBinContent(1,230967.2);
+   frame_a1efb00__1->SetBinContent(1,0);
    frame_a1efb00__1->SetMinimum(0);
    frame_a1efb00__1->SetMaximum(348718.2);
    frame_a1efb00__1->SetEntries(2);
@@ -1398,7 +1398,7 @@ void projection_psi2S()
    graph->Draw("l");
    
    TH1D *frame_a1efb00__2 = new TH1D("frame_a1efb00__2","",46,2.2,4.5);
-   frame_a1efb00__2->SetBinContent(1,230967.2);
+   frame_a1efb00__2->SetBinContent(1,0);
    frame_a1efb00__2->SetMinimum(0);
    frame_a1efb00__2->SetMaximum(348718.2);
    frame_a1efb00__2->SetEntries(2);
@@ -1445,6 +1445,7 @@ tex->SetNDC();
    tex->Draw();
    
    TLegend *leg = new TLegend(0.5175,0.72,0.718,0.8809,NULL,"brNDC");
+   leg->SetBorderSize(0);
    leg->SetTextFont(62);
    leg->SetTextSize(0.03);
    leg->SetLineColor(1);
@@ -1527,7 +1528,7 @@ tex->SetNDC();
    pad4->SetFrameBorderMode(0);
    
    TH1D *frame_a1efec0__3 = new TH1D("frame_a1efec0__3","",11,3.411,3.961);
-   frame_a1efec0__3->SetBinContent(1,230967.5);
+   frame_a1efec0__3->SetBinContent(1,0);
    frame_a1efec0__3->SetMinimum(59089.4);
    frame_a1efec0__3->SetMaximum(66915.4);
    frame_a1efec0__3->SetEntries(2);
@@ -2554,7 +2555,7 @@ tex->SetNDC();
    graph->Draw("l");
    
    TH1D *frame_a1efec0__4 = new TH1D("frame_a1efec0__4","",11,3.411,3.961);
-   frame_a1efec0__4->SetBinContent(1,230967.5);
+   frame_a1efec0__4->SetBinContent(1,0);
    frame_a1efec0__4->SetMinimum(59089.4);
    frame_a1efec0__4->SetMaximum(66915.4);
    frame_a1efec0__4->SetEntries(2);
