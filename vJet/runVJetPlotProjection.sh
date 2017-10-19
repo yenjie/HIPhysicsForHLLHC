@@ -8,6 +8,7 @@ progPath="./vJetPlotProjection.exe"
 inputFiles=(
 "./zJet_Data_pbpb_cent_030_0100.root"
 "./zJet_Data_pbpb_cent_030_0100.root"
+"./zJet_Data_pbpb_cent_030_0100.root"
 "./photonJetFF_Data_xijet_cent010.root"
 "./photonJetFF_Data_xigamma_cent010.root"
 "./photonJetFF_Data_xijet_cent010.root"
@@ -16,7 +17,7 @@ inputFiles=(
 "./photonJetFF_Data_xigamma_cent010.root"
 );
 
-figureIndices=(0 1 2 3 4 5 6 7)
+figureIndices=(0 1 2 3 4 5 6 7 8)
 
 arrayIndices=${!figureIndices[*]}
 for i1 in $arrayIndices
