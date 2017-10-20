@@ -32,4 +32,8 @@ do
     wait
 done
 
+g++ gjpp_1.C -Wall -Werror -Wextra -O2 `root-config --cflags --libs` -o gjpp_1.exe || exit 1
+g++ gjpp_2.C -Wall -Werror -Wextra -O2 `root-config --cflags --libs` -o gjpp_2.exe || exit 1
 
+./gjpp_1.exe xjg_projection.root xjg_projection.root xjg_projection_1.list
+./gjpp_2.exe xjg_projection.root xjg_projection.root xjg_projection_2.list
