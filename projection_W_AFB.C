@@ -111,7 +111,7 @@ void projection_W_AFB()
    Graph_ha1p_pomsdbid_pdf3016->SetStats(0);
    Graph_ha1p_pomsdbid_pdf3016->SetLineStyle(0);
    Graph_ha1p_pomsdbid_pdf3016->SetMarkerStyle(20);
-   Graph_ha1p_pomsdbid_pdf3016->GetXaxis()->SetTitle("#eta_{cm}");
+   Graph_ha1p_pomsdbid_pdf3016->GetXaxis()->SetTitle("|#eta_{cm}|");
    Graph_ha1p_pomsdbid_pdf3016->GetXaxis()->SetRange(1,100);
    Graph_ha1p_pomsdbid_pdf3016->GetXaxis()->SetLabelFont(42);
    Graph_ha1p_pomsdbid_pdf3016->GetXaxis()->SetLabelOffset(0.007);
