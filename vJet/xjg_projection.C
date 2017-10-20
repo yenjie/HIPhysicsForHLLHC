@@ -1,7 +1,7 @@
 void xjg_projection()
 {
 //=========Macro generated from canvas: c1/
-//=========  (Wed Oct 18 16:45:31 2017) by ROOT version6.02/13
+//=========  (Fri Oct 20 02:01:06 2017) by ROOT version6.02/13
    TCanvas *c1 = new TCanvas("c1", "",0,0,535,520);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(0);
@@ -77,7 +77,7 @@ void xjg_projection()
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetXaxis()->SetLabelSize(0.04615384);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetXaxis()->SetTitleSize(0.04923077);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetXaxis()->SetTickLength(0.02656212);
-   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetXaxis()->SetTitleOffset(1.1);
+   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetXaxis()->SetTitleOffset(1.2);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetXaxis()->SetTitleFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetYaxis()->SetTitle("#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}");
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetYaxis()->CenterTitle(true);
@@ -86,7 +86,7 @@ void xjg_projection()
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetYaxis()->SetLabelSize(0.04153846);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetYaxis()->SetTitleSize(0.04615384);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetYaxis()->SetTickLength(0.025);
-   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetYaxis()->SetTitleOffset(1.649254);
+   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetYaxis()->SetTitleOffset(1.746269);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetYaxis()->SetTitleFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetZaxis()->SetLabelFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm1->GetZaxis()->SetLabelSize(0.035);
@@ -817,7 +817,7 @@ void xjg_projection()
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetXaxis()->SetLabelSize(0.04615384);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetXaxis()->SetTitleSize(0.04923077);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetXaxis()->SetTickLength(0.02656212);
-   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetXaxis()->SetTitleOffset(1.1);
+   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetXaxis()->SetTitleOffset(1.2);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetXaxis()->SetTitleFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetYaxis()->SetTitle("#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}");
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetYaxis()->CenterTitle(true);
@@ -826,7 +826,7 @@ void xjg_projection()
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetYaxis()->SetLabelSize(0.04153846);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetYaxis()->SetTitleSize(0.04615384);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetYaxis()->SetTickLength(0.025);
-   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetYaxis()->SetTitleOffset(1.649254);
+   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetYaxis()->SetTitleOffset(1.746269);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetYaxis()->SetTitleFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetZaxis()->SetLabelFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy2->GetZaxis()->SetLabelSize(0.035);
@@ -930,7 +930,7 @@ void xjg_projection()
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetXaxis()->SetLabelSize(0.04615384);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetXaxis()->SetTitleSize(0.04923077);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetXaxis()->SetTickLength(0.02656212);
-   Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetXaxis()->SetTitleOffset(1.1);
+   Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetXaxis()->SetTitleOffset(1.2);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetXaxis()->SetTitleFont(42);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetYaxis()->SetTitle("#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}");
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetYaxis()->CenterTitle(true);
@@ -939,7 +939,7 @@ void xjg_projection()
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetYaxis()->SetLabelSize(0.04153846);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetYaxis()->SetTitleSize(0.04615384);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetYaxis()->SetTickLength(0.025);
-   Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetYaxis()->SetTitleOffset(1.649254);
+   Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetYaxis()->SetTitleOffset(1.746269);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetYaxis()->SetTitleFont(42);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetZaxis()->SetLabelFont(42);
    Graph_h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid1001->GetZaxis()->SetLabelSize(0.035);
@@ -1040,7 +1040,7 @@ void xjg_projection()
    Graph_Graph1002->GetXaxis()->SetLabelSize(0.04615384);
    Graph_Graph1002->GetXaxis()->SetTitleSize(0.04923077);
    Graph_Graph1002->GetXaxis()->SetTickLength(0.02656212);
-   Graph_Graph1002->GetXaxis()->SetTitleOffset(1.1);
+   Graph_Graph1002->GetXaxis()->SetTitleOffset(1.2);
    Graph_Graph1002->GetXaxis()->SetTitleFont(42);
    Graph_Graph1002->GetYaxis()->SetTitle("#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}");
    Graph_Graph1002->GetYaxis()->CenterTitle(true);
@@ -1049,7 +1049,7 @@ void xjg_projection()
    Graph_Graph1002->GetYaxis()->SetLabelSize(0.04153846);
    Graph_Graph1002->GetYaxis()->SetTitleSize(0.04615384);
    Graph_Graph1002->GetYaxis()->SetTickLength(0.025);
-   Graph_Graph1002->GetYaxis()->SetTitleOffset(1.649254);
+   Graph_Graph1002->GetYaxis()->SetTitleOffset(1.746269);
    Graph_Graph1002->GetYaxis()->SetTitleFont(42);
    Graph_Graph1002->GetZaxis()->SetLabelFont(42);
    Graph_Graph1002->GetZaxis()->SetLabelSize(0.035);
@@ -1152,7 +1152,7 @@ void xjg_projection()
    Graph_Graph1003->GetXaxis()->SetLabelSize(0.04615384);
    Graph_Graph1003->GetXaxis()->SetTitleSize(0.04923077);
    Graph_Graph1003->GetXaxis()->SetTickLength(0.02656212);
-   Graph_Graph1003->GetXaxis()->SetTitleOffset(1.1);
+   Graph_Graph1003->GetXaxis()->SetTitleOffset(1.2);
    Graph_Graph1003->GetXaxis()->SetTitleFont(42);
    Graph_Graph1003->GetYaxis()->SetTitle("#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}");
    Graph_Graph1003->GetYaxis()->CenterTitle(true);
@@ -1161,7 +1161,7 @@ void xjg_projection()
    Graph_Graph1003->GetYaxis()->SetLabelSize(0.04153846);
    Graph_Graph1003->GetYaxis()->SetTitleSize(0.04615384);
    Graph_Graph1003->GetYaxis()->SetTickLength(0.025);
-   Graph_Graph1003->GetYaxis()->SetTitleOffset(1.649254);
+   Graph_Graph1003->GetYaxis()->SetTitleOffset(1.746269);
    Graph_Graph1003->GetYaxis()->SetTitleFont(42);
    Graph_Graph1003->GetZaxis()->SetLabelFont(42);
    Graph_Graph1003->GetZaxis()->SetLabelSize(0.035);
@@ -1171,7 +1171,7 @@ void xjg_projection()
    
    gre->Draw(" l z");
    
-   TLegend *leg = new TLegend(0.2537314,0.6923077,0.6119403,0.9,NULL,"brNDC");
+   TLegend *leg = new TLegend(0.2537314,0.7230769,0.9402985,0.8769231,NULL,"brNDC");
    leg->SetBorderSize(0);
    leg->SetTextSize(0.04153846);
    leg->SetLineColor(1);
@@ -1179,19 +1179,12 @@ void xjg_projection()
    leg->SetLineWidth(1);
    leg->SetFillColor(0);
    leg->SetFillStyle(0);
-   TLegendEntry *entry=leg->AddEntry("h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy","PbPb 0 - 30%","pf");
-
-   ci = 929;
-   color = new TColor(ci, 0.9058824, 0.2980392, 0.2352941, " ", 0.7);
-   entry->SetFillColor(ci);
-   entry->SetFillStyle(1001);
-
-   ci = 928;
-   color = new TColor(ci, 0.9058824, 0.2980392, 0.2352941, " ", 0.7);
-   entry->SetLineColor(ci);
+   TLegendEntry *entry=leg->AddEntry("h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy","PbPb 0 - 30%","p");
+   entry->SetLineColor(1);
    entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(21);
+   entry->SetMarkerStyle(20);
    entry->SetMarkerSize(1.2);
    entry->SetTextFont(42);
    entry=leg->AddEntry("h1D_xjg_ptBin7_hiBin1_PbPb_Data_Hybrid","Hybrid","f");
@@ -1210,10 +1203,33 @@ void xjg_projection()
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
+   entry=leg->AddEntry("h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy","Current Unc.","e");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
    entry=leg->AddEntry("Graph0","J#scale[0.8]{EWEL} + P#scale[0.8]{YTHIA}","l");
    entry->SetLineColor(9);
    entry->SetLineStyle(1);
    entry->SetLineWidth(2);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy","Projected Unc.","f");
+
+   ci = 929;
+   color = new TColor(ci, 0.9058824, 0.2980392, 0.2352941, " ", 0.7);
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = 928;
+   color = new TColor(ci, 0.9058824, 0.2980392, 0.2352941, " ", 0.7);
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
    entry->SetMarkerColor(1);
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
@@ -1233,42 +1249,42 @@ void xjg_projection()
    line->SetLineStyle(2);
    line->SetLineWidth(2);
    line->Draw();
-   TLatex *   tex = new TLatex(0.9402985,0.7076923,"p_{T}^{#gamma} > 100 GeV/c");
+   TLatex *   tex = new TLatex(0.9328358,0.6384615,"p_{T}^{#gamma} > 100 GeV/c");
 tex->SetNDC();
    tex->SetTextAlign(33);
    tex->SetTextFont(42);
    tex->SetTextSize(0.03846154);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.9402985,0.6461539,"#left|#eta^{#gamma}#right| < 1.44");
+      tex = new TLatex(0.9328358,0.5769231,"#left|#eta^{#gamma}#right| < 1.44");
 tex->SetNDC();
    tex->SetTextAlign(33);
    tex->SetTextFont(42);
    tex->SetTextSize(0.03846154);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.9402985,0.5961539,"#Delta#phi_{j#gamma} > #frac{7#pi}{8}");
+      tex = new TLatex(0.9328358,0.5269231,"#Delta#phi_{j#gamma} > #frac{7#pi}{8}");
 tex->SetNDC();
    tex->SetTextAlign(33);
    tex->SetTextFont(42);
    tex->SetTextSize(0.03846154);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.9402985,0.523077,"anti-k_{T} jet R = 0.3");
+      tex = new TLatex(0.9328358,0.4538461,"anti-k_{T} jet R = 0.3");
 tex->SetNDC();
    tex->SetTextAlign(33);
    tex->SetTextFont(42);
    tex->SetTextSize(0.03846154);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.9402985,0.4615385,"p_{T}^{jet} > 30 GeV/c");
+      tex = new TLatex(0.9328358,0.3923077,"p_{T}^{jet} > 30 GeV/c");
 tex->SetNDC();
    tex->SetTextAlign(33);
    tex->SetTextFont(42);
    tex->SetTextSize(0.03846154);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.9402985,0.4,"#left|#eta^{jet}#right| < 1.6");
+      tex = new TLatex(0.9328358,0.3307692,"#left|#eta^{jet}#right| < 1.6");
 tex->SetNDC();
    tex->SetTextAlign(33);
    tex->SetTextFont(42);
@@ -1325,7 +1341,7 @@ tex->SetNDC();
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetXaxis()->SetLabelSize(0.04615384);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetXaxis()->SetTitleSize(0.04923077);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetXaxis()->SetTickLength(0.02656212);
-   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetXaxis()->SetTitleOffset(1.1);
+   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetXaxis()->SetTitleOffset(1.2);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetXaxis()->SetTitleFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetYaxis()->SetTitle("#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}");
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetYaxis()->CenterTitle(true);
@@ -1334,7 +1350,7 @@ tex->SetNDC();
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetYaxis()->SetLabelSize(0.04153846);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetYaxis()->SetTitleSize(0.04615384);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetYaxis()->SetTickLength(0.025);
-   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetYaxis()->SetTitleOffset(1.649254);
+   h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetYaxis()->SetTitleOffset(1.746269);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetYaxis()->SetTitleFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetZaxis()->SetLabelFont(42);
    h1D_xjg_ptBin7_hiBin1_phoSIG_jetSIG_final_norm_copy3->GetZaxis()->SetLabelSize(0.035);
@@ -1384,14 +1400,14 @@ tex->SetNDC();
 tex->SetNDC();
    tex->SetTextAlign(32);
    tex->SetTextFont(42);
-   tex->SetTextSize(0.03692308);
+   tex->SetTextSize(0.03461539);
    tex->SetLineWidth(2);
    tex->Draw();
       tex = new TLatex(0.5570149,0.9615384,"");
 tex->SetNDC();
    tex->SetTextAlign(22);
    tex->SetTextFont(42);
-   tex->SetTextSize(0.03692308);
+   tex->SetTextSize(0.03461539);
    tex->SetLineWidth(2);
    tex->Draw();
    c1->Modified();
