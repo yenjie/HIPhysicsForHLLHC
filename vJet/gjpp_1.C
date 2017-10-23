@@ -68,7 +68,7 @@ int gammaJetPlot(const std::string input_file, const std::string sys_file, const
     std::vector<float> i_y = {0.60};
 
     std::vector<std::string> x_titles = {"x_{j#gamma} = p^{jet}_{T}/p^{#gamma}_{T}"};
-    std::vector<std::string> y_titles = {"#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}", "#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}"};
+    std::vector<std::string> y_titles = {"#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}"};
 
     std::string hist_type = "xjg";
     std::string canvas_title = "xjg_projection";
@@ -349,7 +349,7 @@ void set_histogram_style(TH1* h1, int style, std::vector<std::string>& option_st
             h1->SetLineWidth(0);
             h1->SetMarkerColor(1);
             h1->SetMarkerStyle(20);
-            h1->SetMarkerSize(1.2);
+            h1->SetMarkerSize(1.0);
             option_strings.push_back("same p x0");
             option_strings.push_back("p");
             break;
