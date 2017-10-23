@@ -255,7 +255,7 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
   xjjroot::settex(texlumiv2, 0.038);
   TLatex* texlumiafter = new TLatex(0.13, 0.936, "(5.02 TeV pp) + (5.02 TeV PbPb)");
   xjjroot::settex(texlumiafter, 0.038);
-  TLatex* texcent = new TLatex(0.70, 0.18, Form("Cent. 0-100%s", "%"));
+  TLatex* texcent = new TLatex(0.60, 0.18, Form("Centrality 0-100%s", "%"));
   xjjroot::settex(texcent, 0.043);
 
   //

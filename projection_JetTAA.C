@@ -1,4 +1,4 @@
-void canv_TAA_20171015()
+void projection_JetTAA()
 {
 //=========Macro generated from canvas: canvTAA_c/canvTAA_c
 //=========  (Sun Oct 15 10:58:18 2017) by ROOT version6.10/04
@@ -304,13 +304,15 @@ void canv_TAA_20171015()
    proj_Weight_Cent50to70_TAA_h__6->GetZaxis()->SetTitleSize(0.035);
    proj_Weight_Cent50to70_TAA_h__6->GetZaxis()->SetTitleFont(42);
    proj_Weight_Cent50to70_TAA_h__6->Draw("E1 P SAME");
-   TLatex *   tex = new TLatex(0.2,0.93,"#bf{CMS Preliminary Projection}");
+/*   TLatex *   tex = new TLatex(0.2,0.93,"#bf{CMS Preliminary Projection}");
 tex->SetNDC();
    tex->SetTextFont(43);
    tex->SetTextSize(18);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.75,0.93,"#sqrt{S_{NN}}=5.02 TeV");
+      tex 
+*/
+   TLatex * tex= new TLatex(0.75,0.93,"#sqrt{S_{NN}}=5.02 TeV");
 tex->SetNDC();
    tex->SetTextFont(43);
    tex->SetTextSize(18);

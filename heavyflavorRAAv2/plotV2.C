@@ -202,7 +202,7 @@ void plotV2(Float_t lumiMB_D0_before, Float_t lumiMB_Charged_before, Float_t lum
   xjjroot::settex(texlumi, 0.038);
   TLatex* texlumiafter = new TLatex(0.13, 0.936, "(5.02 TeV PbPb)");
   xjjroot::settex(texlumiafter, 0.038);
-  TLatex* texcent = new TLatex(0.70, 0.18, Form("Cent. 30-50%s", "%"));
+  TLatex* texcent = new TLatex(0.60, 0.18, Form("Centrality 30-50%s", "%"));
   xjjroot::settex(texcent, 0.043);
 
   //
