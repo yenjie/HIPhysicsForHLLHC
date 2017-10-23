@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdlib.h>
+#include <math.h>
 using namespace std;
 
 #include "TFile.h"
