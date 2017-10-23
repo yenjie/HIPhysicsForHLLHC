@@ -12,7 +12,7 @@
 
 #include "tiling.h"
 
-#define PROJ_UNC_COLOUR (TColor::GetColor("#E74C3C"))
+#define PROJ_UNC_COLOUR (TColor::GetColor("#ad33ff"))
 #define CURRENT_UNC_COLOUR (TColor::GetColor("#a09f93"))
 
 static float save_stat[16] = {0};
@@ -29,6 +29,7 @@ void draw_sys_unc(TGraph* gr, TH1* h1, TH1* h1_sys);
 int gammaJetPlot(const std::string input_file, const std::string sys_file, const std::string hist_list) {
     gStyle->SetOptTitle(0);
     gStyle->SetOptStat(0);
+    gStyle->SetHatchesLineWidth(3);
 
     TFile* input = new TFile(input_file.c_str(), "read");
     TFile* sys = new TFile(sys_file.c_str(), "read");
@@ -133,7 +134,6 @@ int gammaJetPlot(const std::string input_file, const std::string sys_file, const
                 systematics = (TH1D*)sys->Get((histogram_names[r][c][l] + "_diff_total").c_str());
 
                 TGraph* gr = new TGraph();
-                gr->SetFillStyle(1001);
 
                 generic[l] = input->Get(histogram_names[r][c][l].c_str());
 
@@ -175,9 +175,11 @@ int gammaJetPlot(const std::string input_file, const std::string sys_file, const
                         if (l == 0) {
                             save_stat_unc(histograms[l]);
                         } else {
+                            gr->SetFillStyle(1001);
                             gr->SetFillColorAlpha(CURRENT_UNC_COLOUR, 0.7);
                             draw_current_unc(gr, histograms[l], systematics);
 
+                            gr->SetFillStyle(3254);
                             gr->SetFillColorAlpha(PROJ_UNC_COLOUR, 0.7);
                             draw_projected_unc(gr, histograms[l], systematics);
                         }
@@ -351,7 +353,7 @@ void set_histogram_style(TH1* h1, int style, std::vector<std::string>& option_st
             option_strings.push_back("same p x0");
             option_strings.push_back("p");
             break;
-        case 2:     /* PbPb data 0-30% legend */
+        case 2:     /* PbPb data 30-100% legend */
             h1->SetLineColor(1);
             h1->SetLineWidth(0);
             h1->SetMarkerColor(1);
@@ -360,7 +362,7 @@ void set_histogram_style(TH1* h1, int style, std::vector<std::string>& option_st
             option_strings.push_back("same p x0");
             option_strings.push_back("p");
             break;
-        case 3:     /* PbPb data 0-30% */
+        case 3:     /* PbPb data 30-100% */
             h1->SetLineColor(1);
             h1->SetLineWidth(0);
             h1->SetMarkerColor(1);
@@ -378,9 +380,9 @@ void set_histogram_style(TH1* h1, int style, std::vector<std::string>& option_st
             option_strings.push_back("f");
             break;
         case 5:     /* projected unc. */
-            h1->SetLineColorAlpha(PROJ_UNC_COLOUR, 0.7);
+            h1->SetLineColorAlpha(PROJ_UNC_COLOUR, 0);
             h1->SetLineWidth(0);
-            h1->SetFillStyle(1001);
+            h1->SetFillStyle(3254);
             h1->SetFillColorAlpha(PROJ_UNC_COLOUR, 0.7);
             option_strings.push_back("same p x0");
             option_strings.push_back("f");
