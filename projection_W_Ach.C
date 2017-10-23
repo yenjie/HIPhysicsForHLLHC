@@ -1,28 +1,28 @@
 void projection_W_Ach()
 {
 //=========Macro generated from canvas: chasym/
-//=========  (Fri Oct 13 14:32:17 2017) by ROOT version6.04/02
-   TCanvas *chasym = new TCanvas("chasym", "",0,0,600,600);
+//=========  (Mon Oct 23 17:08:02 2017) by ROOT version6.08/06
+   TCanvas *chasym = new TCanvas("chasym", "",30,185,800,854);
    gStyle->SetOptFit(1);
    gStyle->SetOptStat(0);
    gStyle->SetOptTitle(0);
    chasym->SetHighLightColor(2);
-   chasym->Range(-4.028,-0.2792683,2.272,0.3304878);
+   chasym->Range(-4.412631,-0.2949367,2.218947,0.3379747);
    chasym->SetFillColor(0);
    chasym->SetBorderMode(0);
-   chasym->SetBorderSize(2);
+   chasym->SetBorderSize(0);
    chasym->SetTickx(1);
    chasym->SetTicky(1);
-   chasym->SetLeftMargin(0.16);
-   chasym->SetRightMargin(0.04);
-   chasym->SetTopMargin(0.05);
-   chasym->SetBottomMargin(0.13);
-   chasym->SetFrameFillStyle(0);
+   chasym->SetLeftMargin(0.21);
+   chasym->SetRightMargin(0.03);
+   chasym->SetTopMargin(0.06);
+   chasym->SetBottomMargin(0.15);
+   chasym->SetFrameLineColor(0);
    chasym->SetFrameBorderMode(0);
-   chasym->SetFrameFillStyle(0);
+   chasym->SetFrameLineColor(0);
    chasym->SetFrameBorderMode(0);
    
-   Double_t hasym_bqsqscsc_pdf_fx3007[25] = {
+   Double_t hasym_bqsqscsc_pdf_fx3001[25] = {
    -2.9,
    -2.7,
    -2.5,
@@ -48,7 +48,7 @@ void projection_W_Ach()
    1.5,
    1.7,
    1.9};
-   Double_t hasym_bqsqscsc_pdf_fy3007[25] = {
+   Double_t hasym_bqsqscsc_pdf_fy3001[25] = {
    -0.1227756,
    -0.06318444,
    -0.01589522,
@@ -74,7 +74,7 @@ void projection_W_Ach()
    0.2008518,
    0.2178251,
    0.2375786};
-   Double_t hasym_bqsqscsc_pdf_felx3007[25] = {
+   Double_t hasym_bqsqscsc_pdf_felx3001[25] = {
    0.1,
    0.1,
    0.1,
@@ -100,7 +100,7 @@ void projection_W_Ach()
    0.1,
    0.1,
    0.1};
-   Double_t hasym_bqsqscsc_pdf_fely3007[25] = {
+   Double_t hasym_bqsqscsc_pdf_fely3001[25] = {
    0.01805578,
    0.01680792,
    0.01658499,
@@ -126,7 +126,7 @@ void projection_W_Ach()
    0.007976167,
    0.007577457,
    0.009239419};
-   Double_t hasym_bqsqscsc_pdf_fehx3007[25] = {
+   Double_t hasym_bqsqscsc_pdf_fehx3001[25] = {
    0.1,
    0.1,
    0.1,
@@ -152,7 +152,7 @@ void projection_W_Ach()
    0.1,
    0.1,
    0.1};
-   Double_t hasym_bqsqscsc_pdf_fehy3007[25] = {
+   Double_t hasym_bqsqscsc_pdf_fehy3001[25] = {
    0.0152876,
    0.01483065,
    0.01386152,
@@ -178,54 +178,47 @@ void projection_W_Ach()
    0.008118411,
    0.008238215,
    0.007873712};
-   TGraphAsymmErrors *grae = new TGraphAsymmErrors(25,hasym_bqsqscsc_pdf_fx3007,hasym_bqsqscsc_pdf_fy3007,hasym_bqsqscsc_pdf_felx3007,hasym_bqsqscsc_pdf_fehx3007,hasym_bqsqscsc_pdf_fely3007,hasym_bqsqscsc_pdf_fehy3007);
+   TGraphAsymmErrors *grae = new TGraphAsymmErrors(25,hasym_bqsqscsc_pdf_fx3001,hasym_bqsqscsc_pdf_fy3001,hasym_bqsqscsc_pdf_felx3001,hasym_bqsqscsc_pdf_fehx3001,hasym_bqsqscsc_pdf_fely3001,hasym_bqsqscsc_pdf_fehy3001);
    grae->SetName("hasym_bqsqscsc_pdf");
    grae->SetTitle("Graph");
-
-   Int_t ci;      // for color index setting
-   TColor *color; // for color definition with alpha
-   ci = TColor::GetColor("#ff0000");
-   grae->SetFillColor(ci);
+   grae->SetFillColor(2);
    grae->SetFillStyle(3004);
-
-   ci = TColor::GetColor("#ff0000");
-   grae->SetLineColor(ci);
-
-   ci = TColor::GetColor("#ff0000");
-   grae->SetMarkerColor(ci);
+   grae->SetLineColor(2);
+   grae->SetMarkerColor(2);
+   grae->SetMarkerStyle(20);
    
-   TH1F *Graph_hasym_bqsqscsc_pdf3007 = new TH1F("Graph_hasym_bqsqscsc_pdf3007","Graph",100,-3.5,2.5);
-   Graph_hasym_bqsqscsc_pdf3007->SetMinimum(-0.2);
-   Graph_hasym_bqsqscsc_pdf3007->SetMaximum(0.3);
-   Graph_hasym_bqsqscsc_pdf3007->SetDirectory(0);
-   Graph_hasym_bqsqscsc_pdf3007->SetStats(0);
-   Graph_hasym_bqsqscsc_pdf3007->SetLineStyle(0);
-   Graph_hasym_bqsqscsc_pdf3007->SetMarkerStyle(20);
-   Graph_hasym_bqsqscsc_pdf3007->GetXaxis()->SetTitle("#eta_{cm}");
-   Graph_hasym_bqsqscsc_pdf3007->GetXaxis()->SetRange(9,92);
-   Graph_hasym_bqsqscsc_pdf3007->GetXaxis()->SetLabelFont(42);
-   Graph_hasym_bqsqscsc_pdf3007->GetXaxis()->SetLabelOffset(0.007);
-   Graph_hasym_bqsqscsc_pdf3007->GetXaxis()->SetLabelSize(0.05);
-   Graph_hasym_bqsqscsc_pdf3007->GetXaxis()->SetTitleSize(0.06);
-   Graph_hasym_bqsqscsc_pdf3007->GetXaxis()->SetTitleOffset(0.9);
-   Graph_hasym_bqsqscsc_pdf3007->GetXaxis()->SetTitleFont(42);
-   Graph_hasym_bqsqscsc_pdf3007->GetYaxis()->SetTitle("(N^{+} - N^{-}) / (N^{+} + N^{-})");
-   Graph_hasym_bqsqscsc_pdf3007->GetYaxis()->SetLabelFont(42);
-   Graph_hasym_bqsqscsc_pdf3007->GetYaxis()->SetLabelOffset(0.007);
-   Graph_hasym_bqsqscsc_pdf3007->GetYaxis()->SetLabelSize(0.05);
-   Graph_hasym_bqsqscsc_pdf3007->GetYaxis()->SetTitleSize(0.06);
-   Graph_hasym_bqsqscsc_pdf3007->GetYaxis()->SetTitleOffset(1.25);
-   Graph_hasym_bqsqscsc_pdf3007->GetYaxis()->SetTitleFont(42);
-   Graph_hasym_bqsqscsc_pdf3007->GetZaxis()->SetLabelFont(42);
-   Graph_hasym_bqsqscsc_pdf3007->GetZaxis()->SetLabelOffset(0.007);
-   Graph_hasym_bqsqscsc_pdf3007->GetZaxis()->SetLabelSize(0.05);
-   Graph_hasym_bqsqscsc_pdf3007->GetZaxis()->SetTitleSize(0.06);
-   Graph_hasym_bqsqscsc_pdf3007->GetZaxis()->SetTitleFont(42);
-   grae->SetHistogram(Graph_hasym_bqsqscsc_pdf3007);
+   TH1F *Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001 = new TH1F("Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001","Graph",100,-3.5,2.5);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->SetMinimum(-0.2);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->SetMaximum(0.3);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->SetDirectory(0);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->SetStats(0);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->SetLineStyle(0);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->SetMarkerStyle(20);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetXaxis()->SetTitle("#eta_{cm}");
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetXaxis()->SetRange(9,92);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetXaxis()->SetLabelOffset(0.01);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetXaxis()->SetLabelSize(0.035);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetXaxis()->SetTitleSize(0.0525);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetXaxis()->SetTitleOffset(1.25);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetYaxis()->SetTitle("(N^{+} - N^{-}) / (N^{+} + N^{-})");
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetYaxis()->CenterTitle(true);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetYaxis()->SetLabelOffset(0.01);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetYaxis()->SetLabelSize(0.035);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetYaxis()->SetTitleSize(0.0525);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetYaxis()->SetTitleOffset(1.5);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetZaxis()->SetLabelSize(0.035);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetZaxis()->SetTitleSize(0.035);
+   Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001->GetZaxis()->SetTitleFont(42);
+   grae->SetHistogram(Graph_Graph_Graph_hasym_bqsqscsc_pdf300730013001);
    
    grae->Draw("a5");
    
-   Double_t hasym_zjnghkjm_pdf_fx3008[25] = {
+   Double_t hasym_zjnghkjm_pdf_fx3002[25] = {
    -2.9,
    -2.7,
    -2.5,
@@ -251,7 +244,7 @@ void projection_W_Ach()
    1.5,
    1.7,
    1.9};
-   Double_t hasym_zjnghkjm_pdf_fy3008[25] = {
+   Double_t hasym_zjnghkjm_pdf_fy3002[25] = {
    -0.1406475,
    -0.07715488,
    -0.0274006,
@@ -277,7 +270,7 @@ void projection_W_Ach()
    0.1928174,
    0.2091115,
    0.2324755};
-   Double_t hasym_zjnghkjm_pdf_felx3008[25] = {
+   Double_t hasym_zjnghkjm_pdf_felx3002[25] = {
    0.1,
    0.1,
    0.1,
@@ -303,7 +296,7 @@ void projection_W_Ach()
    0.1,
    0.1,
    0.1};
-   Double_t hasym_zjnghkjm_pdf_fely3008[25] = {
+   Double_t hasym_zjnghkjm_pdf_fely3002[25] = {
    0.02497926,
    0.0287873,
    0.02307633,
@@ -329,7 +322,7 @@ void projection_W_Ach()
    0.009718967,
    0.007990946,
    0.0138091};
-   Double_t hasym_zjnghkjm_pdf_fehx3008[25] = {
+   Double_t hasym_zjnghkjm_pdf_fehx3002[25] = {
    0.1,
    0.1,
    0.1,
@@ -355,7 +348,7 @@ void projection_W_Ach()
    0.1,
    0.1,
    0.1};
-   Double_t hasym_zjnghkjm_pdf_fehy3008[25] = {
+   Double_t hasym_zjnghkjm_pdf_fehy3002[25] = {
    0.02349659,
    0.01953938,
    0.02216871,
@@ -381,49 +374,44 @@ void projection_W_Ach()
    0.01494573,
    0.01505394,
    0.01024053};
-   grae = new TGraphAsymmErrors(25,hasym_zjnghkjm_pdf_fx3008,hasym_zjnghkjm_pdf_fy3008,hasym_zjnghkjm_pdf_felx3008,hasym_zjnghkjm_pdf_fehx3008,hasym_zjnghkjm_pdf_fely3008,hasym_zjnghkjm_pdf_fehy3008);
+   grae = new TGraphAsymmErrors(25,hasym_zjnghkjm_pdf_fx3002,hasym_zjnghkjm_pdf_fy3002,hasym_zjnghkjm_pdf_felx3002,hasym_zjnghkjm_pdf_fehx3002,hasym_zjnghkjm_pdf_fely3002,hasym_zjnghkjm_pdf_fehy3002);
    grae->SetName("hasym_zjnghkjm_pdf");
    grae->SetTitle("Graph");
-
-   ci = TColor::GetColor("#0000ff");
-   grae->SetFillColor(ci);
+   grae->SetFillColor(4);
    grae->SetFillStyle(3005);
-
-   ci = TColor::GetColor("#0000ff");
-   grae->SetLineColor(ci);
-
-   ci = TColor::GetColor("#0000ff");
-   grae->SetMarkerColor(ci);
+   grae->SetLineColor(4);
+   grae->SetMarkerColor(4);
+   grae->SetMarkerStyle(20);
    
-   TH1F *Graph_hasym_zjnghkjm_pdf3008 = new TH1F("Graph_hasym_zjnghkjm_pdf3008","Graph",100,-3.5,2.5);
-   Graph_hasym_zjnghkjm_pdf3008->SetMinimum(-0.2064611);
-   Graph_hasym_zjnghkjm_pdf3008->SetMaximum(0.2835503);
-   Graph_hasym_zjnghkjm_pdf3008->SetDirectory(0);
-   Graph_hasym_zjnghkjm_pdf3008->SetStats(0);
-   Graph_hasym_zjnghkjm_pdf3008->SetLineStyle(0);
-   Graph_hasym_zjnghkjm_pdf3008->SetMarkerStyle(20);
-   Graph_hasym_zjnghkjm_pdf3008->GetXaxis()->SetLabelFont(42);
-   Graph_hasym_zjnghkjm_pdf3008->GetXaxis()->SetLabelOffset(0.007);
-   Graph_hasym_zjnghkjm_pdf3008->GetXaxis()->SetLabelSize(0.05);
-   Graph_hasym_zjnghkjm_pdf3008->GetXaxis()->SetTitleSize(0.06);
-   Graph_hasym_zjnghkjm_pdf3008->GetXaxis()->SetTitleOffset(0.9);
-   Graph_hasym_zjnghkjm_pdf3008->GetXaxis()->SetTitleFont(42);
-   Graph_hasym_zjnghkjm_pdf3008->GetYaxis()->SetLabelFont(42);
-   Graph_hasym_zjnghkjm_pdf3008->GetYaxis()->SetLabelOffset(0.007);
-   Graph_hasym_zjnghkjm_pdf3008->GetYaxis()->SetLabelSize(0.05);
-   Graph_hasym_zjnghkjm_pdf3008->GetYaxis()->SetTitleSize(0.06);
-   Graph_hasym_zjnghkjm_pdf3008->GetYaxis()->SetTitleOffset(1.25);
-   Graph_hasym_zjnghkjm_pdf3008->GetYaxis()->SetTitleFont(42);
-   Graph_hasym_zjnghkjm_pdf3008->GetZaxis()->SetLabelFont(42);
-   Graph_hasym_zjnghkjm_pdf3008->GetZaxis()->SetLabelOffset(0.007);
-   Graph_hasym_zjnghkjm_pdf3008->GetZaxis()->SetLabelSize(0.05);
-   Graph_hasym_zjnghkjm_pdf3008->GetZaxis()->SetTitleSize(0.06);
-   Graph_hasym_zjnghkjm_pdf3008->GetZaxis()->SetTitleFont(42);
-   grae->SetHistogram(Graph_hasym_zjnghkjm_pdf3008);
+   TH1F *Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002 = new TH1F("Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002","Graph",100,-3.5,2.5);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->SetMinimum(-0.2064611);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->SetMaximum(0.2835503);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->SetDirectory(0);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->SetStats(0);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->SetLineStyle(0);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->SetMarkerStyle(20);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetXaxis()->SetLabelOffset(0.007);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetXaxis()->SetLabelSize(0.05);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetXaxis()->SetTitleSize(0.06);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetXaxis()->SetTitleOffset(0.9);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetYaxis()->SetLabelOffset(0.007);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetYaxis()->SetLabelSize(0.05);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetYaxis()->SetTitleSize(0.06);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetYaxis()->SetTitleOffset(1.25);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetZaxis()->SetLabelOffset(0.007);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetZaxis()->SetLabelSize(0.05);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetZaxis()->SetTitleSize(0.06);
+   Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002->GetZaxis()->SetTitleFont(42);
+   grae->SetHistogram(Graph_Graph_Graph_hasym_zjnghkjm_pdf300830023002);
    
    grae->Draw("5");
    
-   Double_t hasym_gqjyonwt_graph_fx3009[25] = {
+   Double_t hasym_gqjyonwt_graph_fx3003[25] = {
    -2.9,
    -2.7,
    -2.5,
@@ -449,7 +437,7 @@ void projection_W_Ach()
    1.5,
    1.7,
    1.9};
-   Double_t hasym_gqjyonwt_graph_fy3009[25] = {
+   Double_t hasym_gqjyonwt_graph_fy3003[25] = {
    -0.1406475,
    -0.07715488,
    -0.02740058,
@@ -475,7 +463,7 @@ void projection_W_Ach()
    0.1928174,
    0.2091115,
    0.2324755};
-   Double_t hasym_gqjyonwt_graph_felx3009[25] = {
+   Double_t hasym_gqjyonwt_graph_felx3003[25] = {
    0.1,
    0.1,
    0.1,
@@ -501,7 +489,7 @@ void projection_W_Ach()
    0.1,
    0.1,
    0.1};
-   Double_t hasym_gqjyonwt_graph_fely3009[25] = {
+   Double_t hasym_gqjyonwt_graph_fely3003[25] = {
    0.01013005,
    0.01011997,
    0.01011178,
@@ -527,7 +515,7 @@ void projection_W_Ach()
    0.01010428,
    0.01010556,
    0.01010638};
-   Double_t hasym_gqjyonwt_graph_fehx3009[25] = {
+   Double_t hasym_gqjyonwt_graph_fehx3003[25] = {
    0.1,
    0.1,
    0.1,
@@ -553,7 +541,7 @@ void projection_W_Ach()
    0.1,
    0.1,
    0.1};
-   Double_t hasym_gqjyonwt_graph_fehy3009[25] = {
+   Double_t hasym_gqjyonwt_graph_fehy3003[25] = {
    0.01013005,
    0.01011997,
    0.01011178,
@@ -579,37 +567,38 @@ void projection_W_Ach()
    0.01010428,
    0.01010556,
    0.01010638};
-   grae = new TGraphAsymmErrors(25,hasym_gqjyonwt_graph_fx3009,hasym_gqjyonwt_graph_fy3009,hasym_gqjyonwt_graph_felx3009,hasym_gqjyonwt_graph_fehx3009,hasym_gqjyonwt_graph_fely3009,hasym_gqjyonwt_graph_fehy3009);
+   grae = new TGraphAsymmErrors(25,hasym_gqjyonwt_graph_fx3003,hasym_gqjyonwt_graph_fy3003,hasym_gqjyonwt_graph_felx3003,hasym_gqjyonwt_graph_fehx3003,hasym_gqjyonwt_graph_fely3003,hasym_gqjyonwt_graph_fehy3003);
    grae->SetName("hasym_gqjyonwt_graph");
    grae->SetTitle("Graph");
    grae->SetFillColor(1);
    grae->SetFillStyle(0);
+   grae->SetMarkerStyle(20);
    
-   TH1F *Graph_hasym_gqjyonwt_graph3009 = new TH1F("Graph_hasym_gqjyonwt_graph3009","Graph",100,-3.5,2.5);
-   Graph_hasym_gqjyonwt_graph3009->SetMinimum(-0.1901135);
-   Graph_hasym_gqjyonwt_graph3009->SetMaximum(0.2819178);
-   Graph_hasym_gqjyonwt_graph3009->SetDirectory(0);
-   Graph_hasym_gqjyonwt_graph3009->SetStats(0);
-   Graph_hasym_gqjyonwt_graph3009->SetLineStyle(0);
-   Graph_hasym_gqjyonwt_graph3009->SetMarkerStyle(20);
-   Graph_hasym_gqjyonwt_graph3009->GetXaxis()->SetLabelFont(42);
-   Graph_hasym_gqjyonwt_graph3009->GetXaxis()->SetLabelOffset(0.007);
-   Graph_hasym_gqjyonwt_graph3009->GetXaxis()->SetLabelSize(0.05);
-   Graph_hasym_gqjyonwt_graph3009->GetXaxis()->SetTitleSize(0.06);
-   Graph_hasym_gqjyonwt_graph3009->GetXaxis()->SetTitleOffset(0.9);
-   Graph_hasym_gqjyonwt_graph3009->GetXaxis()->SetTitleFont(42);
-   Graph_hasym_gqjyonwt_graph3009->GetYaxis()->SetLabelFont(42);
-   Graph_hasym_gqjyonwt_graph3009->GetYaxis()->SetLabelOffset(0.007);
-   Graph_hasym_gqjyonwt_graph3009->GetYaxis()->SetLabelSize(0.05);
-   Graph_hasym_gqjyonwt_graph3009->GetYaxis()->SetTitleSize(0.06);
-   Graph_hasym_gqjyonwt_graph3009->GetYaxis()->SetTitleOffset(1.25);
-   Graph_hasym_gqjyonwt_graph3009->GetYaxis()->SetTitleFont(42);
-   Graph_hasym_gqjyonwt_graph3009->GetZaxis()->SetLabelFont(42);
-   Graph_hasym_gqjyonwt_graph3009->GetZaxis()->SetLabelOffset(0.007);
-   Graph_hasym_gqjyonwt_graph3009->GetZaxis()->SetLabelSize(0.05);
-   Graph_hasym_gqjyonwt_graph3009->GetZaxis()->SetTitleSize(0.06);
-   Graph_hasym_gqjyonwt_graph3009->GetZaxis()->SetTitleFont(42);
-   grae->SetHistogram(Graph_hasym_gqjyonwt_graph3009);
+   TH1F *Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003 = new TH1F("Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003","Graph",100,-3.5,2.5);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->SetMinimum(-0.1901135);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->SetMaximum(0.2819178);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->SetDirectory(0);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->SetStats(0);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->SetLineStyle(0);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->SetMarkerStyle(20);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetXaxis()->SetLabelOffset(0.007);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetXaxis()->SetLabelSize(0.05);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetXaxis()->SetTitleSize(0.06);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetXaxis()->SetTitleOffset(0.9);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetYaxis()->SetLabelOffset(0.007);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetYaxis()->SetLabelSize(0.05);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetYaxis()->SetTitleSize(0.06);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetYaxis()->SetTitleOffset(1.25);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetZaxis()->SetLabelOffset(0.007);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetZaxis()->SetLabelSize(0.05);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetZaxis()->SetTitleSize(0.06);
+   Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003->GetZaxis()->SetTitleFont(42);
+   grae->SetHistogram(Graph_Graph_Graph_hasym_gqjyonwt_graph300930033003);
    
    grae->Draw("p");
    
@@ -630,36 +619,24 @@ void projection_W_Ach()
    entry->SetMarkerStyle(21);
    entry->SetMarkerSize(1);
    entry->SetTextFont(62);
-   entry=leg->AddEntry("hasym_bqsqscsc_pdf","CT14nlo","lpf");
-
-   ci = TColor::GetColor("#ff0000");
-   entry->SetFillColor(ci);
+   entry=leg->AddEntry("hasym_bqsqscsc_pdf","CT14nlo","lf");
+   entry->SetFillColor(2);
    entry->SetFillStyle(3004);
-
-   ci = TColor::GetColor("#ff0000");
-   entry->SetLineColor(ci);
+   entry->SetLineColor(2);
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
-
-   ci = TColor::GetColor("#ff0000");
-   entry->SetMarkerColor(ci);
-   entry->SetMarkerStyle(1);
+   entry->SetMarkerColor(2);
+   entry->SetMarkerStyle(20);
    entry->SetMarkerSize(1);
    entry->SetTextFont(62);
-   entry=leg->AddEntry("hasym_zjnghkjm_pdf","EPPS16nlo","lpf");
-
-   ci = TColor::GetColor("#0000ff");
-   entry->SetFillColor(ci);
+   entry=leg->AddEntry("hasym_zjnghkjm_pdf","EPPS16nlo","lf");
+   entry->SetFillColor(4);
    entry->SetFillStyle(3005);
-
-   ci = TColor::GetColor("#0000ff");
-   entry->SetLineColor(ci);
+   entry->SetLineColor(4);
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
-
-   ci = TColor::GetColor("#0000ff");
-   entry->SetMarkerColor(ci);
-   entry->SetMarkerStyle(1);
+   entry->SetMarkerColor(4);
+   entry->SetMarkerStyle(20);
    entry->SetMarkerSize(1);
    entry->SetTextFont(62);
    entry=leg->AddEntry("hasym_gqjyonwt_graph","Data","lp");
@@ -667,29 +644,32 @@ void projection_W_Ach()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(1);
+   entry->SetMarkerStyle(20);
    entry->SetMarkerSize(1);
    entry->SetTextFont(62);
    leg->Draw();
-   TLatex *   tex = new TLatex(0.96,0.96,"pPb (2000 nb^{-1}, #sqrt{s_{NN}} = 8.16 TeV)");
+   TLatex *   tex = new TLatex(0.22,0.9596354,"#sqrt{s_{NN}} = 5.02 TeV");
+tex->SetNDC();
+   tex->SetTextFont(43);
+   tex->SetTextSize(30);
+   tex->SetLineWidth(2);
+   tex->Draw();
+      tex = new TLatex(0.96,0.96,"PbPb 10 nb^{-1}");
 tex->SetNDC();
    tex->SetTextAlign(31);
-   tex->SetTextFont(42);
-   tex->SetTextSize(0.0375);
+   tex->SetTextFont(43);
+   tex->SetTextSize(30);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.228,0.9213,"CMS");
+      tex = new TLatex(0.25,0.86,"CMS");
 tex->SetNDC();
-   tex->SetTextAlign(13);
    tex->SetTextFont(61);
-   tex->SetTextSize(0.0475);
+   tex->SetTextSize(0.06);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.228,0.8643,"Projection");
+      tex = new TLatex(0.38,0.86,"Projection");
 tex->SetNDC();
-   tex->SetTextAlign(13);
    tex->SetTextFont(52);
-   tex->SetTextSize(0.0361);
    tex->SetLineWidth(2);
    tex->Draw();
    chasym->Modified();
