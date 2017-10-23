@@ -452,7 +452,7 @@ void projectionPlot_xjz_Theory(std::string inputFile, double sysReduction)
     yTitleFont = 42;
 
     yMin = 0;
-    yMax = 1.2;
+    yMax = 1.3;
 
     enum HISTLABELS {
         k_pbpb,
@@ -598,7 +598,7 @@ void projectionPlot_xjz_Theory(std::string inputFile, double sysReduction)
 
     TLegend* leg = 0;
     legendX1 = 0.25;
-    legendY1 = 0.77;
+    legendY1 = 0.78;
     legendWidth = 0.44;
     legendHeight = 0.06;
     legendMargin = 0.15;
@@ -703,7 +703,7 @@ void projectionPlot_xjz_Theory(std::string inputFile, double sysReduction)
     }
 
     textXCMSProj = 0.25;
-    textYCMSProj = 0.86;
+    textYCMSProj = 0.87;
     textAlignCMSProj = 11;
     textFontCMSProj = 61;
     textSizeCMSProj = 0.06;
@@ -712,7 +712,7 @@ void projectionPlot_xjz_Theory(std::string inputFile, double sysReduction)
     latex->Draw();
 
     textXCMSProj = 0.38;
-    textYCMSProj = 0.86;
+    textYCMSProj = 0.87;
     textAlignCMSProj = 11;
     textFontCMSProj = 52;
     textSizeCMSProj = 0.05;
@@ -770,7 +770,7 @@ void projectionPlot_xjz_Theory_MergedUnc(std::string inputFile, double sysReduct
     yTitleFont = 42;
 
     yMin = 0;
-    yMax = 1.35;
+    yMax = 1.30;
 
     enum HISTLABELS {
         k_pbpb,
@@ -785,23 +785,23 @@ void projectionPlot_xjz_Theory_MergedUnc(std::string inputFile, double sysReduct
     markerSizes = {1.70};
     lineColors = {kBlack};
     lineTransparencies = {1.0};
-    lineWidths = {3};
-    fillColors = {34};
+    lineWidths = {0};
+    fillColors = {0};
     if (sysReduction == -1) fillColors = {0};
     fillTransparencies = {0.75};
     drawOptions = {"e same"};
     sysPaths = {
-            "h1D_sysVar_xjz_pbpb_cent030_rel",
+            "h1D_sysVar_xjz_pbpb_cent030_rel"
     };
     if (sysReduction == -1) {
         sysPaths = {
-                "NULL",
+                "NULL"
         };
     }
-    sysUseRelUnc = {true};
-    sysColors = {34};
-    sysTransparencies = {0.8};
-    sysFillStyles = {1001};
+    sysUseRelUnc = {true, true};
+    sysColors = {TColor::GetColor("#a09f93"), TColor::GetColor("#ad33ff")};
+    sysTransparencies = {0.8, 0.8};
+    sysFillStyles = {1001, 3254};
 
     int nHistPaths = histPaths.size();
     std::vector<TH1D*> h1Ds(nHistPaths, 0);
@@ -902,27 +902,44 @@ void projectionPlot_xjz_Theory_MergedUnc(std::string inputFile, double sysReduct
     h1DsMergedUncCurrent[k_pbpb] =(TH1D*)h1Ds[k_pbpb]->Clone(Form("%s_MergedUncCurrent", h1Ds[k_pbpb]->GetName()));
     h1DsMergedUncProjection[k_pbpb] =(TH1D*)h1Ds[k_pbpb]->Clone(Form("%s_MergedUncProjection", h1Ds[k_pbpb]->GetName()));
 
-    mergeUncWithErrorBar(h1DsMergedUncCurrent[k_pbpb], h1DsSys[k_pbpb], sysUseRelUnc[k_pbpb]);
-    h1Ds[k_pbpb] = h1DsMergedUncCurrent[k_pbpb];
-
-    scaleBinErrors(h1DsMergedUncProjection[k_pbpb], 1./TMath::Sqrt(statsIncrease));
-    if (sysReduction >= 0) {
-        h1DsSys[k_pbpb]->Scale(1-sysReduction);
-    }
-    mergeUncWithErrorBar(h1DsMergedUncProjection[k_pbpb], h1DsSys[k_pbpb], sysUseRelUnc[k_pbpb]);
-
     if (h1DsSys[k_pbpb] != 0) {
-        h1DsSys[k_pbpb] = (TH1D*)h1DsMergedUncProjection[k_pbpb]->Clone(Form("%s_MergedUncProjection", h1DsSys[k_pbpb]->GetName()));
-        for (int iBin = 1; iBin < h1DsSys[k_pbpb]->GetNbinsX(); ++iBin) {
+        // prepare and draw current uncertainty
+        mergeUncWithErrorBar(h1DsMergedUncCurrent[k_pbpb], h1DsSys[k_pbpb], sysUseRelUnc[k_pbpb]);
+
+        for (int iBin = 1; iBin < h1DsMergedUncCurrent[k_pbpb]->GetNbinsX(); ++iBin) {
+            double binContent = h1DsMergedUncCurrent[k_pbpb]->GetBinContent(iBin);
+            double binError = h1DsMergedUncCurrent[k_pbpb]->GetBinError(iBin);
             if (sysUseRelUnc[k_pbpb])
-                h1DsSys[k_pbpb]->SetBinContent(iBin, h1DsSys[k_pbpb]->GetBinError(iBin)/h1DsSys[k_pbpb]->GetBinContent(iBin));
+                h1DsMergedUncCurrent[k_pbpb]->SetBinContent(iBin, binError/binContent);
             else
-                h1DsSys[k_pbpb]->SetBinContent(iBin, h1DsSys[k_pbpb]->GetBinError(iBin));
+                h1DsMergedUncCurrent[k_pbpb]->SetBinContent(iBin, binError);
         }
 
         gr = new TGraph();
         setTGraphSys(k_pbpb, gr);
-        drawSysUncBoxes(gr, h1Ds[k_pbpb], h1DsSys[k_pbpb], sysUseRelUnc[k_pbpb]);
+        gr->SetLineWidth(3);
+        drawSysUncBoxes(gr, h1Ds[k_pbpb], h1DsMergedUncCurrent[k_pbpb], sysUseRelUnc[k_pbpb]);
+
+        // prepare and draw projected uncertainty
+        scaleBinErrors(h1DsMergedUncProjection[k_pbpb], 1./TMath::Sqrt(statsIncrease));
+        if (sysReduction >= 0) {
+            h1DsSys[k_pbpb]->Scale(1-sysReduction);
+        }
+        mergeUncWithErrorBar(h1DsMergedUncProjection[k_pbpb], h1DsSys[k_pbpb], sysUseRelUnc[k_pbpb]);
+
+        for (int iBin = 1; iBin < h1DsMergedUncProjection[k_pbpb]->GetNbinsX(); ++iBin) {
+            double binContent = h1DsMergedUncProjection[k_pbpb]->GetBinContent(iBin);
+            double binError = h1DsMergedUncProjection[k_pbpb]->GetBinError(iBin);
+            if (sysUseRelUnc[k_pbpb])
+                h1DsMergedUncProjection[k_pbpb]->SetBinContent(iBin, binError/binContent);
+            else
+                h1DsMergedUncProjection[k_pbpb]->SetBinContent(iBin, binError);
+        }
+
+        gr = new TGraph();
+        setTGraphSys(k_pbpb+1, gr);
+        gr->SetLineWidth(3);
+        drawSysUncBoxes(gr, h1Ds[k_pbpb], h1DsMergedUncProjection[k_pbpb], sysUseRelUnc[k_pbpb]);
     }
     h1Ds[k_pbpb]->Draw(drawOptions[k_pbpb].c_str());
 
@@ -933,16 +950,16 @@ void projectionPlot_xjz_Theory_MergedUnc(std::string inputFile, double sysReduct
     graphs[k_GLV_g2p0]->Draw(graphDrawOptions[k_GLV_g2p0].c_str());
     graphs[k_GLV_g2p2]->Draw(graphDrawOptions[k_GLV_g2p2].c_str());
 
-    h1Ds[k_pbpb]->Draw("e same");
+    h1Ds[k_pbpb]->Draw(drawOptions[k_pbpb].c_str());
 
     TLegend* leg = 0;
     legendX1 = 0.25;
-    legendY1 = 0.71;
+    legendY1 = 0.724;
     legendWidth = 0.44;
     legendHeight = 0.14;
     legendMargin = 0.15;
     legendEntryTexts = {"PbPb, 0-30 %", "Current Unc.", "Projected Unc."};
-    legendEntryOptions = {"p", "e", "f"};
+    legendEntryOptions = {"p", "f", "f"};
     leg = new TLegend();
 
     hTmp = (TH1D*)h1Ds[k_pbpb]->Clone(Form("%s_tmp", h1Ds[k_pbpb]->GetName()));
@@ -950,11 +967,17 @@ void projectionPlot_xjz_Theory_MergedUnc(std::string inputFile, double sysReduct
     leg->AddEntry(hTmp, legendEntryTexts[k_pbpb].c_str(), legendEntryOptions[k_pbpb].c_str());
 
     hTmp = (TH1D*)h1Ds[k_pbpb]->Clone(Form("%s_tmp2", h1Ds[k_pbpb]->GetName()));
-    hTmp->SetLineWidth(3);
+    hTmp->SetLineWidth(0);
+    hTmp->SetFillColor(sysColors[k_pbpb]);
+    hTmp->SetFillColorAlpha(sysColors[k_pbpb], sysTransparencies[k_pbpb]);
+    hTmp->SetFillStyle(sysFillStyles[k_pbpb]);
     leg->AddEntry(hTmp, legendEntryTexts[1].c_str(), legendEntryOptions[1].c_str());
 
     hTmp = (TH1D*)h1Ds[k_pbpb]->Clone(Form("%s_tmp3", h1Ds[k_pbpb]->GetName()));
     hTmp->SetLineWidth(0);
+    hTmp->SetFillColor(sysColors[k_pbpb+1]);
+    hTmp->SetFillColorAlpha(sysColors[k_pbpb+1], sysTransparencies[k_pbpb+1]);
+    hTmp->SetFillStyle(sysFillStyles[k_pbpb+1]);
     leg->AddEntry(hTmp, legendEntryTexts[2].c_str(), legendEntryOptions[2].c_str());
 
     setLegend(leg);
@@ -1050,7 +1073,7 @@ void projectionPlot_xjz_Theory_MergedUnc(std::string inputFile, double sysReduct
     }
 
     textXCMSProj = 0.25;
-    textYCMSProj = 0.86;
+    textYCMSProj = 0.87;
     textAlignCMSProj = 11;
     textFontCMSProj = 61;
     textSizeCMSProj = 0.06;
@@ -1059,7 +1082,7 @@ void projectionPlot_xjz_Theory_MergedUnc(std::string inputFile, double sysReduct
     latex->Draw();
 
     textXCMSProj = 0.38;
-    textYCMSProj = 0.86;
+    textYCMSProj = 0.87;
     textAlignCMSProj = 11;
     textFontCMSProj = 52;
     textSizeCMSProj = 0.05;
@@ -1350,8 +1373,8 @@ void projectionPlot_xi_MergedUnc(std::string inputFile, bool isxijet, double sys
     markerSizes = {1.70, 1.70};
     lineColors = {kBlack, 45};
     lineTransparencies = {1.0, 1.0};
-    lineWidths = {3, 3};
-    fillColors = {35, 43};
+    lineWidths = {0, 0};
+    fillColors = {0, 0};
     if (sysReduction == -1) fillColors = {0, 0};
     fillTransparencies = {0.8, 0.8};
     drawOptions = {"e same", "e same"};
@@ -1365,10 +1388,10 @@ void projectionPlot_xi_MergedUnc(std::string inputFile, bool isxijet, double sys
                 "NULL"
         };
     }
-    sysUseRelUnc = {false, false};
-    sysColors = {34, 43};
-    sysTransparencies = {0.8, 0.8};
-    sysFillStyles = {1001, 1001};
+    sysUseRelUnc = {false, false, false, false};
+    sysColors = {TColor::GetColor("#a09f93"), 43, TColor::GetColor("#ad33ff"), TColor::GetColor("#29a329")};
+    sysTransparencies = {0.8, 0.8, 0.8, 0.8};
+    sysFillStyles = {1001, 1001, 3254, 3245};
 
     int nHistPaths = histPaths.size();
     std::vector<TH1D*> h1Ds(nHistPaths, 0);
@@ -1392,17 +1415,9 @@ void projectionPlot_xi_MergedUnc(std::string inputFile, bool isxijet, double sys
     std::vector<TH1D*> h1DsMergedUncProjection(nHistPaths, 0);
 
     for (int i = 0; i < nHistPaths; ++i) {
+
         h1DsMergedUncCurrent[i] =(TH1D*)h1Ds[i]->Clone(Form("%s_MergedUncCurrent", h1Ds[i]->GetName()));
         h1DsMergedUncProjection[i] =(TH1D*)h1Ds[i]->Clone(Form("%s_MergedUncProjection", h1Ds[i]->GetName()));
-
-        mergeUncWithErrorBar(h1DsMergedUncCurrent[i], h1DsSys[i], sysUseRelUnc[i]);
-        h1Ds[i] = h1DsMergedUncCurrent[i];
-
-        scaleBinErrors(h1DsMergedUncProjection[i], 1./TMath::Sqrt(statsIncrease));
-        if (sysReduction >= 0) {
-            h1DsSys[i]->Scale(1-sysReduction);
-        }
-        mergeUncWithErrorBar(h1DsMergedUncProjection[i], h1DsSys[i], sysUseRelUnc[i]);
     }
 
     // draw histograms
@@ -1414,17 +1429,43 @@ void projectionPlot_xi_MergedUnc(std::string inputFile, bool isxijet, double sys
         }
 
         if (h1DsSys[i] != 0) {
-            h1DsSys[i] = (TH1D*)h1DsMergedUncProjection[i]->Clone(Form("%s_MergedUncProjection", h1DsSys[i]->GetName()));
-            for (int iBin = 1; iBin < h1DsSys[i]->GetNbinsX(); ++iBin) {
+            // prepare and draw current uncertainty
+            mergeUncWithErrorBar(h1DsMergedUncCurrent[i], h1DsSys[i], sysUseRelUnc[i]);
+
+            for (int iBin = 1; iBin < h1DsMergedUncCurrent[i]->GetNbinsX(); ++iBin) {
+                double binContent = h1DsMergedUncCurrent[i]->GetBinContent(iBin);
+                double binError = h1DsMergedUncCurrent[i]->GetBinError(iBin);
                 if (sysUseRelUnc[i])
-                    h1DsSys[i]->SetBinContent(iBin, h1DsSys[i]->GetBinError(iBin)/h1DsSys[i]->GetBinContent(iBin));
+                    h1DsMergedUncCurrent[i]->SetBinContent(iBin, binError/binContent);
                 else
-                    h1DsSys[i]->SetBinContent(iBin, h1DsSys[i]->GetBinError(iBin));
+                    h1DsMergedUncCurrent[i]->SetBinContent(iBin, binError);
             }
 
             gr = new TGraph();
             setTGraphSys(i, gr);
-            drawSysUncBoxes(gr, h1Ds[i], h1DsSys[i], sysUseRelUnc[i]);
+            gr->SetLineWidth(3);
+            drawSysUncBoxes(gr, h1Ds[i], h1DsMergedUncCurrent[i], sysUseRelUnc[i]);
+
+            // prepare and draw projected uncertainty
+            scaleBinErrors(h1DsMergedUncProjection[i], 1./TMath::Sqrt(statsIncrease));
+            if (sysReduction >= 0) {
+                h1DsSys[i]->Scale(1-sysReduction);
+            }
+            mergeUncWithErrorBar(h1DsMergedUncProjection[i], h1DsSys[i], sysUseRelUnc[i]);
+
+            for (int iBin = 1; iBin < h1DsMergedUncProjection[i]->GetNbinsX(); ++iBin) {
+                double binContent = h1DsMergedUncProjection[i]->GetBinContent(iBin);
+                double binError = h1DsMergedUncProjection[i]->GetBinError(iBin);
+                if (sysUseRelUnc[i])
+                    h1DsMergedUncProjection[i]->SetBinContent(iBin, binError/binContent);
+                else
+                    h1DsMergedUncProjection[i]->SetBinContent(iBin, binError);
+            }
+
+            gr = new TGraph();
+            setTGraphSys(i+2, gr);
+            gr->SetLineWidth(3);
+            drawSysUncBoxes(gr, h1Ds[i], h1DsMergedUncProjection[i], sysUseRelUnc[i]);
         }
 
         h1Ds[i]->Draw(drawOptions[i].c_str());
@@ -1438,18 +1479,24 @@ void projectionPlot_xi_MergedUnc(std::string inputFile, bool isxijet, double sys
     legendHeight = 0.14;
     legendMargin = 0.15;
     legendEntryTexts = {"PbPb Cent. 0-10 %", "Current Unc.", "Projected Unc."};
-    legendEntryOptions = {"p", "e", "f"};
+    legendEntryOptions = {"p", "f", "f"};
     leg = new TLegend();
     hTmp = (TH1D*)h1Ds[k_pbpb]->Clone(Form("%s_tmp", h1Ds[k_pbpb]->GetName()));
     hTmp->SetLineWidth(0);
     leg->AddEntry(hTmp, legendEntryTexts[k_pbpb].c_str(), legendEntryOptions[k_pbpb].c_str());
 
     hTmp = (TH1D*)h1Ds[k_pbpb]->Clone(Form("%s_tmp2", h1Ds[k_pbpb]->GetName()));
-    hTmp->SetLineWidth(3);
+    hTmp->SetLineWidth(0);
+    hTmp->SetFillColor(sysColors[k_pbpb]);
+    hTmp->SetFillColorAlpha(sysColors[k_pbpb], sysTransparencies[k_pbpb]);
+    hTmp->SetFillStyle(sysFillStyles[k_pbpb]);
     leg->AddEntry(hTmp, legendEntryTexts[1].c_str(), legendEntryOptions[1].c_str());
 
     hTmp = (TH1D*)h1Ds[k_pbpb]->Clone(Form("%s_tmp3", h1Ds[k_pbpb]->GetName()));
     hTmp->SetLineWidth(0);
+    hTmp->SetFillColor(sysColors[k_pbpb+2]);
+    hTmp->SetFillColorAlpha(sysColors[k_pbpb+2], sysTransparencies[k_pbpb+2]);
+    hTmp->SetFillStyle(sysFillStyles[k_pbpb+2]);
     leg->AddEntry(hTmp, legendEntryTexts[2].c_str(), legendEntryOptions[2].c_str());
 
     setLegend(leg);
@@ -1461,18 +1508,24 @@ void projectionPlot_xi_MergedUnc(std::string inputFile, bool isxijet, double sys
     legendHeight = 0.14;
     legendMargin = 0.15;
     legendEntryTexts = {"pp (smeared)", "Current Unc.", "Projected Unc."};
-    legendEntryOptions = {"p", "e", "f"};
+    legendEntryOptions = {"p", "f", "f"};
     leg = new TLegend();
     hTmp = (TH1D*)h1Ds[k_pp]->Clone(Form("%s_tmp", h1Ds[k_pbpb]->GetName()));
     hTmp->SetLineWidth(0);
     leg->AddEntry(hTmp, legendEntryTexts[k_pbpb].c_str(), legendEntryOptions[k_pbpb].c_str());
 
     hTmp = (TH1D*)h1Ds[k_pp]->Clone(Form("%s_tmp2", h1Ds[k_pbpb]->GetName()));
-    hTmp->SetLineWidth(3);
+    hTmp->SetLineWidth(0);
+    hTmp->SetFillColor(sysColors[k_pp]);
+    hTmp->SetFillColorAlpha(sysColors[k_pp], sysTransparencies[k_pp]);
+    hTmp->SetFillStyle(sysFillStyles[k_pp]);
     leg->AddEntry(hTmp, legendEntryTexts[1].c_str(), legendEntryOptions[1].c_str());
 
     hTmp = (TH1D*)h1Ds[k_pp]->Clone(Form("%s_tmp3", h1Ds[k_pbpb]->GetName()));
     hTmp->SetLineWidth(0);
+    hTmp->SetFillColor(sysColors[k_pp+2]);
+    hTmp->SetFillColorAlpha(sysColors[k_pp+2], sysTransparencies[k_pp+2]);
+    hTmp->SetFillStyle(sysFillStyles[k_pp+2]);
     leg->AddEntry(hTmp, legendEntryTexts[2].c_str(), legendEntryOptions[2].c_str());
 
     setLegend(leg);
