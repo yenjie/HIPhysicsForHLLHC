@@ -50,7 +50,7 @@ void UpsilonRAA_projection_strickland(bool isArrow =false)
 
   double RAA_stat_1S[9] = {0.132, 0.0902256, 0.0538254, 0.0365479, 0.0280983, 0.0220778, 0.0179416, 0.0219812, 0.0195714};
   double RAA_stat_2S[9] = {0.319203, 0.17292, 0.107219, 0.0783393, 0.0604491, 0.083968, 0.0430219, 0.0523789, 0.0458323};
-  double RAA_stat_3S[2] = {0.19252511713061085*0.7256, 0.03840673937957297*20.3017};
+  double RAA_stat_3S[2] = {0.19252511713061085*0.7256, 0.03840673937957297*0.253070};
 
   double RAA_sys_1S[9] = {0.159183, 0.125144, 0.0700169, 0.050805, 0.0435077, 0.0314787, 0.0264651, 0.0247458, 0.0264865};
   double RAA_sys_2S[9] = {0.157761, 0.127932, 0.0366789, 0.0244695, 0.019422, 0.0132188, 0.00768777, 0.00917921, 0.0107326};
@@ -254,6 +254,7 @@ void UpsilonRAA_projection_strickland(bool isArrow =false)
   globtex->SetTextSize(0.0387);
   
   //// axis et. al
+  /*
   gRAA_sys[0]->GetXaxis()->SetTitle("N_{part}");
   gRAA_sys[0]->GetXaxis()->CenterTitle();
   gRAA_sys[0]->GetYaxis()->SetTitle("R_{AA}");
@@ -266,18 +267,82 @@ void UpsilonRAA_projection_strickland(bool isArrow =false)
   gRAA_sys[0]->GetYaxis()->SetTitleSize(0.06*1.0);
   gRAA_sys[0]->GetXaxis()->SetLabelSize(0.05*1.0);
   gRAA_sys[0]->GetYaxis()->SetLabelSize(0.05*1.0);
-  
+  */
+  //TH1D *h1D = new TH1D("h1D","",10,0,2);
+  //h1D->Reset();
+  gRAA_sys[0]->SetMinimum(0);
+  gRAA_sys[0]->SetMaximum(1.2);
+//  gRAA_sys[0]->SetStats(0);
+
+  gRAA_sys[0]->SetLineWidth(0);
+  gRAA_sys[0]->GetXaxis()->SetTitle("N_{part}");
+  gRAA_sys[0]->GetXaxis()->CenterTitle(true);
+  gRAA_sys[0]->GetXaxis()->SetLabelFont(42);
+  gRAA_sys[0]->GetXaxis()->SetLabelSize(0.035);
+  gRAA_sys[0]->GetXaxis()->SetTitleSize(0.0525);
+  gRAA_sys[0]->GetXaxis()->SetTitleOffset(1.25);
+  gRAA_sys[0]->GetXaxis()->SetTitleFont(42);
+  gRAA_sys[0]->GetXaxis()->SetLimits(0.,xmax);
+  gRAA_sys[0]->GetYaxis()->SetTitle("R_{AA}");
+  gRAA_sys[0]->GetYaxis()->CenterTitle(true);
+  gRAA_sys[0]->GetYaxis()->SetLabelFont(42);
+  gRAA_sys[0]->GetYaxis()->SetLabelSize(0.035);
+  gRAA_sys[0]->GetYaxis()->SetTitleSize(0.0525);
+  gRAA_sys[0]->GetYaxis()->SetTitleOffset(1.5);
+  gRAA_sys[0]->GetYaxis()->SetTitleFont(42);
+
+
   //// draw  
-  TCanvas* c1 = new TCanvas("c1","c1",600+xlonger,600);
-  TPad* pad_diff = new TPad("pad_diff", "",0, 0, 600/(600.+xlonger), 1.0); // vs centrality
-  pad_diff->SetRightMargin(0);
+  TCanvas* c1 = new TCanvas("c1","c1",650+xlonger,670);
+  TPad* pad_diff = new TPad("pad_diff", "",0, 0, 600/(600.+xlonger), 0.98); // vs centrality
+/*  pad_diff->SetRightMargin(0);
   pad_diff->SetBottomMargin(0.14);
   pad_diff->SetTopMargin(0.067);
-  TPad* pad_int = new TPad("pad_int", "",600/(600.+xlonger), 0, 1.0, 1.0); // centrality-integrated
-  pad_int->SetBottomMargin(0.14);
-  pad_int->SetTopMargin(0.067);
+*/
+  TPad* pad_int = new TPad("pad_int", "",600/(600.+xlonger), 0, 1.0, 0.98); // centrality-integrated
   pad_int->SetLeftMargin(0);
+  pad_int->Range(-0.5526315,-0.2278481,2.078947,1.291139);
+  pad_int->SetFillColor(0);
+  pad_int->SetBorderMode(0);
+  pad_int->SetBorderSize(0);
+  pad_int->SetTickx(1);
+  pad_int->SetTicky(1);
+  pad_int->SetRightMargin(0.04);
+  pad_int->SetTopMargin(0.06);
+  pad_int->SetBottomMargin(0.15);
+  pad_int->SetFrameLineColor(0);
+  pad_int->SetFrameBorderMode(0);
+  pad_int->SetFrameLineColor(0);
+  pad_int->SetFrameBorderMode(0);
+/*  pad_int->SetBottomMargin(0.14);
+  pad_int->SetTopMargin(0.067);
   pad_int->SetRightMargin(0.032*600/xlonger);
+*/
+  
+//  TCanvas *projectionCanvasTemplate = new TCanvas("projectionCanvasTemplate", "",0,0,800,800);
+//  pad_diff->SetHighLightColor(2);
+  pad_diff->Range(-0.5526315,-0.2278481,2.078947,1.291139);
+  pad_diff->SetFillColor(0);
+  pad_diff->SetBorderMode(0);
+  pad_diff->SetBorderSize(0);
+  pad_diff->SetTickx(1);
+  pad_diff->SetTicky(1);
+  pad_diff->SetLeftMargin(0.18);
+  pad_diff->SetRightMargin(0.0);
+  pad_diff->SetTopMargin(0.06);
+  pad_diff->SetBottomMargin(0.15);
+  pad_diff->SetFrameLineColor(0);
+  pad_diff->SetFrameBorderMode(0);
+  pad_diff->SetFrameLineColor(0);
+  pad_diff->SetFrameBorderMode(0);
+
+  pad_diff->Modified();
+  pad_diff->cd();
+  pad_diff->SetSelected(pad_diff);
+  pad_diff->Update();
+  //pad_diff->SaveAs("pad_diff.png");
+
+
 
   //// --- 1st pad!!!   
   c1->cd();
@@ -332,11 +397,11 @@ void UpsilonRAA_projection_strickland(bool isArrow =false)
 //  arrLeg->Draw();
   
   //// draw text
-  double sz_init = 0.874; double sz_step = 0.0558;
+  double sz_init = 0.889; double sz_step = 0.0548;
 //  globtex->DrawLatex(0.22+0.04, sz_init, "p_{T}^{#mu} > 4 GeV/c");
-  globtex->DrawLatex(0.22+0.1, sz_init, "p_{T}^{#mu#mu} < 30 GeV/c");
+  globtex->DrawLatex(0.56+0.1, sz_init, "p_{T}^{#mu#mu} < 30 GeV/c");
 //  globtex->DrawLatex(0.46+0.04, sz_init+0.002, "|#eta|^{#mu} < 2.4");
-  globtex->DrawLatex(0.22+0.1, sz_init-sz_step, "|y^{#mu#mu}| < 2.4");
+  globtex->DrawLatex(0.56+0.1, sz_init-sz_step, "|y^{#mu#mu}| < 2.4");
 /*
   TLatex* centtex = new TLatex();
   centtex->SetNDC();
@@ -498,8 +563,8 @@ void UpsilonRAA_projection_strickland(bool isArrow =false)
   globalUncBox -> Draw("l same");
 
 
-  sys_pp_1S = TMath::Sqrt(sys_pp_1S*sys_pp_1S + 0.0106916*0.0106916); 
-  sys_pp_2S = TMath::Sqrt(sys_pp_2S*sys_pp_2S + 0.0182454*0.0182454); 
+  sys_pp_1S = TMath::Sqrt(sys_pp_1S*sys_pp_1S/9 + 0.0106916*0.0106916/(sqrt(27)*sqrt(27))); 
+  sys_pp_2S = TMath::Sqrt(sys_pp_2S*sys_pp_2S/9 + 0.0182454*0.0182454/(sqrt(27)*sqrt(27))); 
   TBox *ppRefUncBox1S = new TBox(xmax-sys_global_x*2,1-sys_pp_1S,xmax-sys_global_x+1,1+sys_pp_1S);
   ppRefUncBox1S -> SetFillColor(kPink-6);
   ppRefUncBox1S -> Draw("same");
@@ -507,11 +572,37 @@ void UpsilonRAA_projection_strickland(bool isArrow =false)
   TBox *ppRefUncBox2S = new TBox(xmax-sys_global_x,1-sys_pp_2S,xmax,1+sys_pp_2S);
   ppRefUncBox2S -> SetFillColor(kBlue-3);
   ppRefUncBox2S -> Draw("same");
+  
+  TLatex* tex = 0;
+  tex = new TLatex(0.22,0.96,"#sqrt{s_{NN}} = 5.02 TeV");
+  tex->SetNDC();
+  tex->SetTextFont(43);
+  tex->SetTextSize(30);
+  tex->SetLineWidth(2);
+  tex->Draw("same");
+  tex = new TLatex(0.96,0.96,"PbPb 10 nb^{-1}");
+  tex->SetNDC();
+  tex->SetTextAlign(31);
+  tex->SetTextFont(43);
+  tex->SetTextSize(30);
+  tex->SetLineWidth(2);
+  tex->Draw("same");
+  tex = new TLatex(0.25,0.86,"CMS");
+  tex->SetNDC();
+  tex->SetTextFont(61);
+  tex->SetTextSize(0.06);
+  tex->SetLineWidth(2);
+  tex->Draw("same");
+  tex = new TLatex(0.38,0.86,"Projection");
+  tex->SetNDC();
+  tex->SetTextFont(52);
+  tex->SetLineWidth(2);
+  tex->Draw("same");
 
-  pad_diff->Update();
+//  pad_diff->Update();
 //  CMS_lumi( c1, iPeriod, iPos );
-  CMS_lumi_raaCent_projection( pad_diff, iPeriod, iPos );
-  pad_diff->Update();
+//  CMS_lumi_raaCent_projection( pad_diff, iPeriod, iPos );
+//  pad_diff->Update();
   //// --- 2nd pad!!!   
   c1->cd();
   pad_int->Draw(); 
@@ -520,7 +611,7 @@ void UpsilonRAA_projection_strickland(bool isArrow =false)
   //// for int
   gRAA_int_sys[0]->GetXaxis()->SetLimits(xmin_int,xmax_int);
   gRAA_int_sys[0]->SetMinimum(0.0);
-  gRAA_int_sys[0]->SetMaximum(1.3);
+  gRAA_int_sys[0]->SetMaximum(1.2);
   gRAA_int_sys[0]->GetXaxis()->SetNdivisions(101);
   gRAA_int_sys[0]->GetXaxis()->SetLabelSize(0);
   gRAA_int_sys[0]->GetYaxis()->SetTickLength(0.03*600/xlonger);
@@ -549,11 +640,11 @@ void UpsilonRAA_projection_strickland(bool isArrow =false)
   
   pad_int->Update();
   //// draw text
-  double sz_allign = 0.034;
+  double sz_allign = 0.045;
   globtex->SetTextAlign(22); //center-center
   globtex->SetTextSize(0.038*600./xlonger);
   globtex->DrawLatex(0.5*(1-0.032*600/xlonger), sz_init-sz_step-sz_allign, "Cent.");
-  globtex->DrawLatex(0.5*(1-0.032*600/xlonger), sz_init-sz_step*2-sz_allign, "0-100%");
+  globtex->DrawLatex(0.5*(1-0.021*600/xlonger), sz_init-sz_step*1.9-sz_allign, "0-100%");
 
 	c1->Update();
   c1->SaveAs("Projection_Strickland_RAA_vs_cent.png");
