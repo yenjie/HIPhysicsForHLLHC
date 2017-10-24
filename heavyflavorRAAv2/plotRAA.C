@@ -30,6 +30,8 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
   Float_t lumiweightMB_Charged = TMath::Sqrt(lumiMB_after/lumiMB_Charged_before);
   Float_t lumiweightTG_Charged = TMath::Sqrt(lumiTG_after/lumiTG_Charged_before);
 
+  TCanvas *c2, *c1;
+
   // Dzero
 
   const int nxD0 = 19;
@@ -237,7 +239,7 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
   Float_t pti = 0.5;
   Float_t pte = 600;
   
-  TH2F* hempty = new TH2F("hempty", ";p_{T} (GeV/c);R_{AA}", 50, pti, pte, 10., 0, 1.70);
+  TH2F* hempty = new TH2F("hempty", ";p_{T} (GeV);R_{AA}", 50, pti, pte, 10., 0, 1.70);
   xjjroot::sethempty(hempty, -0.1, -0.2, 0.05, 0.04);
   TLine* line = new TLine(pti, 1, pte, 1);
   xjjroot::setline(line, kBlack, 2, 2);
@@ -249,12 +251,14 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
   xjjroot::settex(texpreafter, 0.05, 13, 52);
   TLatex* texdata = new TLatex(0.15, 0.78, "2015 Data");
   xjjroot::settex(texdata, 0.05, 13);
-  TLatex* texlumi = new TLatex(0.13, 0.936, "27.4 pb^{-1} (5.02 TeV pp) + 0.4 nb^{-1} (5.02 TeV PbPb)");
-  xjjroot::settex(texlumi, 0.038);
-  TLatex* texlumiv2 = new TLatex(0.13, 0.936, "27.4 pb^{-1} (5.02 TeV pp) + (5.02 TeV PbPb)");
-  xjjroot::settex(texlumiv2, 0.038);
-  TLatex* texlumiafter = new TLatex(0.13, 0.936, "(5.02 TeV pp) + (5.02 TeV PbPb)");
-  xjjroot::settex(texlumiafter, 0.038);
+  TLatex* texsnn = new TLatex(0.13, 0.945, "#sqrt{s_{NN}} = 5.02 TeV");
+  xjjroot::settex(texsnn, 0.038);
+  TLatex* texlumi = new TLatex(0.965, 0.945, "pp 27.4 pb^{-1} + PbPb 0.4 nb^{-1}");
+  xjjroot::settex(texlumi, 0.038, 31);
+  TLatex* texlumiv2 = new TLatex(0.965, 0.945, "pp 27.4 pb^{-1} + PbPb");
+  xjjroot::settex(texlumiv2, 0.038, 31);
+  TLatex* texlumiafter = new TLatex(0.965, 0.945, "pp + PbPb");
+  xjjroot::settex(texlumiafter, 0.038, 31);
   TLatex* texcent = new TLatex(0.60, 0.18, Form("Centrality 0-100%s", "%"));
   xjjroot::settex(texcent, 0.043);
 
@@ -271,7 +275,7 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
 
   //
 
-  TCanvas* c2 = new TCanvas("c2", "", 1200, 600);
+  c2 = new TCanvas("c2", "", 1200, 600);
   c2->Divide(2, 1);
 
   c2->cd(1);
@@ -291,10 +295,11 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
   texcms->Draw();
   texpre->Draw();
   texdata->Draw();
+  texsnn->Draw();
   texlumi->Draw();
   texcent->Draw();
   TLegend* legRAAbefore = new TLegend(0.45, 0.71, 0.92, 0.91);
-  xjjroot::setleg(legRAAbefore, 0.037);
+  xjjroot::setleg(legRAAbefore, 0.035);
   legRAAbefore->AddEntry(gRAA_Charged_before, "Charged hadrons", "pf");
   legRAAbefore->AddEntry(gRAA_D0_before, "D^{0}", "pf");
   legRAAbefore->AddEntry(gRAA_Bp_before, "B^{+}", "pf");
@@ -318,21 +323,68 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
   // hRAA_Ds_after->Draw("plsame");
   texcms->Draw();
   texpreafter->Draw();
+  texsnn->Draw();
   texlumiafter->Draw();
   texcent->Draw();
   TLegend* legRAAafter = new TLegend(0.45, 0.60, 0.92, 0.92);
-  xjjroot::setleg(legRAAafter, 0.037);
+  xjjroot::setleg(legRAAafter, 0.035);
   legRAAafter->AddEntry(gRAA_Charged_after, "Charged hadrons", "pf");
-  legRAAafter->AddEntry((TObject*)0, Form("(p_{T} < 50 GeV), %.1f nb^{-1}", lumiMB_after), NULL);
-  legRAAafter->AddEntry((TObject*)0, Form("(p_{T} > 50 GeV), %.0f nb^{-1}", lumiTG_after), NULL);
-  legRAAafter->AddEntry(gRAA_D0_after, Form("D^{0} (p_{T} < 20 GeV), %.1f nb^{-1}", lumiMB_after), "pf");
-  legRAAafter->AddEntry((TObject*)0, Form("D^{0} (p_{T} > 20 GeV), %.0f nb^{-1}", lumiTG_after), NULL);
+  legRAAafter->AddEntry((TObject*)0, Form("(p#scale[0.6]{#lower[0.6]{T}} < 50 GeV), %.1f nb^{-1}", lumiMB_after), NULL);
+  legRAAafter->AddEntry((TObject*)0, Form("(p#scale[0.6]{#lower[0.6]{T}} > 50 GeV), %.0f nb^{-1}", lumiTG_after), NULL);
+  legRAAafter->AddEntry(gRAA_D0_after, Form("D^{0} (p#scale[0.6]{#lower[0.6]{T}} < 20 GeV), %.1f nb^{-1}", lumiMB_after), "pf");
+  legRAAafter->AddEntry((TObject*)0, Form("D^{0} (p#scale[0.6]{#lower[0.6]{T}} > 20 GeV), %.0f nb^{-1}", lumiTG_after), NULL);
   legRAAafter->AddEntry(gRAA_Bp_after, Form("B^{+}, %.0f nb^{-1}", lumiTG_after), "pf");
   legRAAafter->AddEntry(gRAA_NPJPsi_syst_after, Form("Non-prompt J/#psi, %.0f nb^{-1}", lumiTG_after), "pf");
   // legRAAafter->AddEntry(gRAA_Ds_after, Form("D_{s}, %.1f nb^{-1}", lumiMB_after), "pf");  
   legRAAafter->Draw();
 
   c2->SaveAs(Form("plots/cRAA_lumiTG_%.0f_lumiMB_%.0f_v1.pdf", lumiTG_after, lumiMB_after));
+
+  c1 = new TCanvas("c1left", "", 600, 600);
+  gPad->SetLogx();
+  hempty->Draw();
+  line->Draw();
+  drawsystCharged(1., 1., trkerr);
+  hRAA_Charged_before->Draw("plsame");
+  gRAA_D0_before->Draw("5same");
+  hRAA_D0_before->Draw("plsame");
+  gRAA_Bp_before->Draw("5same");
+  hRAA_Bp_before->Draw("plsame");
+  gRAA_NPJPsi_syst_before->Draw("2same");
+  gRAA_NPJPsi_stat_before->Draw("psame");
+  // gRAA_Ds_before->Draw("5same");
+  // hRAA_Ds_before->Draw("plsame");
+  texcms->Draw();
+  texpre->Draw();
+  texdata->Draw();
+  texsnn->Draw();
+  texlumi->Draw();
+  texcent->Draw();
+  legRAAbefore->Draw();
+  c1->SaveAs(Form("plots/cRAA_lumiTG_%.0f_lumiMB_%.0f_v1_left.pdf", lumiTG_after, lumiMB_after));
+
+  c1 = new TCanvas("c1right", "", 600, 600);
+  gPad->SetLogx();
+  hempty->Draw();
+  line->Draw();
+  drawsystCharged(lumiweightTG_Charged, lumiweightMB_Charged, trkerr);
+  hRAA_Charged_after->Draw("plsame");
+  gRAA_D0_after->Draw("5same");
+  hRAA_D0_after->Draw("plsame");
+  gRAA_Bp_after->Draw("5same");
+  hRAA_Bp_after->Draw("plsame");
+  gRAA_NPJPsi_syst_after->Draw("2same");
+  gRAA_NPJPsi_stat_after->Draw("psame");
+  // gRAA_Ds_after->Draw("5same");
+  // hRAA_Ds_after->Draw("plsame");
+  texcms->Draw();
+  texpreafter->Draw();
+  texsnn->Draw();
+  texlumiafter->Draw();
+  texcent->Draw();
+  legRAAafter->Draw();
+  c1->SaveAs(Form("plots/cRAA_lumiTG_%.0f_lumiMB_%.0f_v1_right.pdf", lumiTG_after, lumiMB_after));
+
 
   //
 
@@ -356,15 +408,16 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
   texcms->Draw();
   texpre->Draw();
   texdata->Draw();
+  texsnn->Draw();
   texlumiv2->Draw();
   texcent->Draw();
   TLegend* legRAAbeforev2 = new TLegend(0.45, 0.60, 0.92, 0.92);
-  xjjroot::setleg(legRAAbeforev2, 0.037);
+  xjjroot::setleg(legRAAbeforev2, 0.035);
   legRAAbeforev2->AddEntry(gRAA_Charged_before, "Charged hadrons", "pf");
-  legRAAbeforev2->AddEntry((TObject*)0, Form("(p_{T} < 50 GeV), %.2f nb^{-1}", lumiMB_Charged_before), NULL);
-  legRAAbeforev2->AddEntry((TObject*)0, Form("(p_{T} > 50 GeV), %.1f nb^{-1}", lumiTG_Charged_before), NULL);
-  legRAAbeforev2->AddEntry(gRAA_D0_before, Form("D^{0} (p_{T} < 20 GeV), %.2f nb^{-1}", lumiMB_D0_before), "pf");
-  legRAAbeforev2->AddEntry((TObject*)0, Form("D^{0} (p_{T} > 20 GeV), %.1f nb^{-1}", lumiTG_D0_before), NULL);
+  legRAAbeforev2->AddEntry((TObject*)0, Form("(p#scale[0.6]{#lower[0.6]{T}} < 50 GeV), %.2f nb^{-1}", lumiMB_Charged_before), NULL);
+  legRAAbeforev2->AddEntry((TObject*)0, Form("(p#scale[0.6]{#lower[0.6]{T}} > 50 GeV), %.1f nb^{-1}", lumiTG_Charged_before), NULL);
+  legRAAbeforev2->AddEntry(gRAA_D0_before, Form("D^{0} (p#scale[0.6]{#lower[0.6]{T}} < 20 GeV), %.2f nb^{-1}", lumiMB_D0_before), "pf");
+  legRAAbeforev2->AddEntry((TObject*)0, Form("D^{0} (p#scale[0.6]{#lower[0.6]{T}} > 20 GeV), %.1f nb^{-1}", lumiTG_D0_before), NULL);
   legRAAbeforev2->AddEntry(gRAA_Bp_before, Form("B^{+}, %.2f nb^{-1}", lumiTG_Bp_before), "pf");
   legRAAbeforev2->AddEntry(gRAA_NPJPsi_syst_before, Form("Non-prompt J/#psi, %.2f nb^{-1}", lumiTG_Bp_before), "pf");
   // legRAAbeforev2->AddEntry(gRAA_Ds_before, Form("D_{s}, %.2f nb^{-1}", lumiMB_D0_before), "pf");  
@@ -386,11 +439,59 @@ void plotRAA(Float_t lumiTG_D0_before, Float_t lumiMB_D0_before, Float_t lumiTG_
   gRAA_NPJPsi_stat_after->Draw("psame");
   texcms->Draw();
   texpreafter->Draw();
+  texsnn->Draw();
   texlumiafter->Draw();
   texcent->Draw();
   legRAAafter->Draw();
 
   c2->SaveAs(Form("plots/cRAA_lumiTG_%.0f_lumiMB_%.0f_v2.pdf", lumiTG_after, lumiMB_after));
+
+
+  c1 = new TCanvas("c1v2left", "", 600, 600);
+  gPad->SetLogx();
+  hempty->Draw();
+  line->Draw();
+  drawsystCharged(1., 1., trkerr);
+  hRAA_Charged_before->Draw("plsame");
+  gRAA_D0_before->Draw("5same");
+  hRAA_D0_before->Draw("plsame");
+  gRAA_Bp_before->Draw("5same");
+  hRAA_Bp_before->Draw("plsame");
+  // gRAA_Ds_before->Draw("5same");
+  // hRAA_Ds_before->Draw("plsame");
+  gRAA_NPJPsi_syst_before->Draw("2same");
+  gRAA_NPJPsi_stat_before->Draw("psame");
+  texcms->Draw();
+  texpre->Draw();
+  texdata->Draw();
+  texsnn->Draw();
+  texlumiv2->Draw();
+  texcent->Draw();
+  legRAAbeforev2->Draw();
+  c1->SaveAs(Form("plots/cRAA_lumiTG_%.0f_lumiMB_%.0f_v2_left.pdf", lumiTG_after, lumiMB_after));
+
+  c1 = new TCanvas("c1v2right", "", 600, 600);
+  gPad->SetLogx();
+  hempty->Draw();
+  line->Draw();
+  drawsystCharged(lumiweightTG_Charged, lumiweightMB_Charged, trkerr);
+  hRAA_Charged_after->Draw("plsame");
+  gRAA_D0_after->Draw("5same");
+  hRAA_D0_after->Draw("plsame");
+  gRAA_Bp_after->Draw("5same");
+  hRAA_Bp_after->Draw("plsame");
+  // gRAA_Ds_after->Draw("5same");
+  // hRAA_Ds_after->Draw("plsame");
+  gRAA_NPJPsi_syst_after->Draw("2same");
+  gRAA_NPJPsi_stat_after->Draw("psame");
+  texcms->Draw();
+  texpreafter->Draw();
+  texsnn->Draw();
+  texlumiafter->Draw();
+  texcent->Draw();
+  legRAAafter->Draw();
+  c1->SaveAs(Form("plots/cRAA_lumiTG_%.0f_lumiMB_%.0f_v2_right.pdf", lumiTG_after, lumiMB_after));
+
 
 }
 

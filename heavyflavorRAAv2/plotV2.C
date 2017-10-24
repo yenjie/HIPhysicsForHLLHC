@@ -1,6 +1,7 @@
 #include "xjjrootuti.h"
 #include "plotV2.h"
 #include "datapoints/V2_CMS_Charged_30_50.h"
+#include "plotTheoryV2.h"
 
 Double_t errorD0lowpt = 0.30; // 30%
 Double_t errorsystD0lowpt = 0.137405/0.722896; // lowest pt bin
@@ -21,6 +22,8 @@ void plotV2(Float_t lumiMB_D0_before, Float_t lumiMB_Charged_before, Float_t lum
   Float_t lumiweightMB_D0 = TMath::Sqrt(lumiMB_after/lumiMB_D0_before);
   Float_t lumiweightMB_Charged = TMath::Sqrt(lumiMB_after/lumiMB_Charged_before);
 
+  TCanvas *c2, *c1;
+
   // Dzero
 
   const int nxD0 = 10;
@@ -32,19 +35,19 @@ void plotV2(Float_t lumiMB_D0_before, Float_t lumiMB_Charged_before, Float_t lum
   for(int i=0;i<nxD0;i++)
     {
       Double_t centervalue,centervalueafter,staterror,systNPerror,systerror,tem;
-      getD0_CMS>>tem>>tem>>centervalue>>centervalueafter>>staterror>>systNPerror>>systerror;
+      getD0_CMS>>tem>>tem>>centervalue>>centervalueafter>>staterror>>systerror>>systNPerror;
       hV2_D0_before->SetBinContent(i+1,centervalue);
       hV2_D0_before->SetBinError(i+1,staterror);
       hV2_D0_after->SetBinContent(i+1,centervalueafter);
-      hV2_D0_after->SetBinError(i+1,staterror/lumiweightMB_D0);
+      hV2_D0_after->SetBinError(i+1,staterror*(centervalueafter/centervalue)/lumiweightMB_D0);
       axD0[i] = (xD0[i+1]+xD0[i])/2.;
       exD0[i] = 0.5;
       ayD0before[i] = centervalue;
       eyD0before[i] = systerror;
       eyNPD0before[i] = systNPerror;
       ayD0after[i] = centervalueafter;
-      eyD0after[i] = systerror/lumiweightMB_D0;
-      eyNPD0after[i] = systNPerror/lumiweightMB_D0;
+      eyD0after[i] = systerror*(centervalueafter/centervalue)/lumiweightMB_D0;
+      eyNPD0after[i] = systNPerror*(centervalueafter/centervalue)/lumiweightMB_D0;
     }
   getD0_CMS.close();
   getD0_CMS.clear();
@@ -186,7 +189,7 @@ void plotV2(Float_t lumiMB_D0_before, Float_t lumiMB_Charged_before, Float_t lum
   Float_t pti = 0.;
   Float_t pte = 41;
   
-  TH2F* hempty = new TH2F("hempty", ";p_{T} (GeV/c);v_{2}", 50, pti, pte, 10., -0.1, 0.50);
+  TH2F* hempty = new TH2F("hempty", ";p_{T} (GeV);v_{2}", 50, pti, pte, 10., -0.08, 0.40);
   xjjroot::sethempty(hempty, -0.1, -0.2, 0.05, 0.04);
   TLine* line = new TLine(pti, 0, pte, 0);
   xjjroot::setline(line, kBlack, 2, 2);
@@ -198,10 +201,12 @@ void plotV2(Float_t lumiMB_D0_before, Float_t lumiMB_Charged_before, Float_t lum
   xjjroot::settex(texpreafter, 0.05, 13, 52);
   TLatex* texdata = new TLatex(0.15, 0.78, "2015 Data");
   xjjroot::settex(texdata, 0.05, 13);
-  TLatex* texlumi = new TLatex(0.13, 0.936, "(5.02 TeV PbPb)");
-  xjjroot::settex(texlumi, 0.038);
-  TLatex* texlumiafter = new TLatex(0.13, 0.936, "(5.02 TeV PbPb)");
-  xjjroot::settex(texlumiafter, 0.038);
+  TLatex* texsnn = new TLatex(0.13, 0.945, "#sqrt{s_{NN}} = 5.02 TeV");
+  xjjroot::settex(texsnn, 0.038);
+  TLatex* texlumi = new TLatex(0.965, 0.945, "PbPb");
+  xjjroot::settex(texlumi, 0.038, 31);
+  TLatex* texlumiafter = new TLatex(0.965, 0.945, Form("PbPb %.1f nb^{-1 }",lumiMB_after));
+  xjjroot::settex(texlumiafter, 0.038, 31);
   TLatex* texcent = new TLatex(0.60, 0.18, Form("Centrality 30-50%s", "%"));
   xjjroot::settex(texcent, 0.043);
 
@@ -218,7 +223,7 @@ void plotV2(Float_t lumiMB_D0_before, Float_t lumiMB_Charged_before, Float_t lum
 
   //
 
-  TCanvas* c2 = new TCanvas("c2", "", 1200, 600);
+  c2 = new TCanvas("c2", "", 1200, 600);
   c2->Divide(2, 1);
 
   c2->cd(1);
@@ -228,20 +233,20 @@ void plotV2(Float_t lumiMB_D0_before, Float_t lumiMB_Charged_before, Float_t lum
   gV2_Charged_stat_before->Draw("pesame");
   gV2_D0_NP_before->Draw("2same");
   gV2_D0_before->Draw("5same");
-  hV2_D0_before->Draw("plsame");
+  hV2_D0_before->Draw("x0esame");
   // gV2_Ds_NP_before->Draw("2same");
   // gV2_Ds_before->Draw("5same");
   // hV2_Ds_before->Draw("plsame");
   texcms->Draw();
   texpre->Draw();
   texdata->Draw();
+  texsnn->Draw();
   texlumi->Draw();
   texcent->Draw();
-  TLegend* legV2before = new TLegend(0.47, 0.67, 0.92, 0.91);
-  xjjroot::setleg(legV2before, 0.04);
-  legV2before->AddEntry((TObject*)0, "0.02 nb^{-1}", NULL);
-  legV2before->AddEntry(gV2_Charged_before, "Charged hadrons", "pf");
-  legV2before->AddEntry(gV2_D0_NP_before, "D^{0}", "pf");
+  TLegend* legV2before = new TLegend(0.45, 0.75, 0.89, 0.90);
+  xjjroot::setleg(legV2before, 0.037);
+  legV2before->AddEntry(gV2_Charged_before, Form("Charged hadrons, %.2f nb^{-1}", lumiMB_Charged_before), "pf");
+  legV2before->AddEntry(gV2_D0_NP_before, Form("D^{0}, %.2f nb^{-1}", lumiMB_D0_before), "pf");
   // legV2before->AddEntry(gV2_Ds_NP_before, "D_{s}", "pf");
   legV2before->Draw();
 
@@ -252,23 +257,197 @@ void plotV2(Float_t lumiMB_D0_before, Float_t lumiMB_Charged_before, Float_t lum
   gV2_Charged_stat_after->Draw("pesame");
   gV2_D0_NP_after->Draw("2same");
   gV2_D0_after->Draw("5same");
-  hV2_D0_after->Draw("plsame");
+  hV2_D0_after->Draw("x0esame");
   // gV2_Ds_NP_after->Draw("2same");
   // gV2_Ds_after->Draw("5same");
   // hV2_Ds_after->Draw("plsame");
   texcms->Draw();
   texpreafter->Draw();
+  texsnn->Draw();
   texlumiafter->Draw();
   texcent->Draw();
-  TLegend* legV2after = new TLegend(0.47, 0.67, 0.92, 0.91);
-  xjjroot::setleg(legV2after, 0.04);
-  legV2after->AddEntry((TObject*)0, Form("%.1f nb^{-1}", lumiMB_after), NULL);
+  TLegend* legV2after = new TLegend(0.45, 0.75, 0.89, 0.90);
+  xjjroot::setleg(legV2after, 0.037);
   legV2after->AddEntry(gV2_Charged_after, "Charged hadrons", "pf");
   legV2after->AddEntry(gV2_D0_NP_after, "D^{0}", "pf");
-  // legV2after->AddEntry(gV2_Ds_NP_after, "D_{s}", "pf");
+  // legV2before->AddEntry(gV2_Ds_NP_after, "D_{s}", "pf");
   legV2after->Draw();
 
-  c2->SaveAs(Form("plots/cV2_lumiMB_%.0f.pdf", lumiMB_after));
+  c2->SaveAs(Form("plots/cV2_lumiMB_%.0f_woTheory.pdf", lumiMB_after));
+
+
+  c1 = new TCanvas("c1left", "", 600, 600);
+  hempty->Draw();
+  line->Draw();
+  gV2_Charged_before->Draw("2same");
+  gV2_Charged_stat_before->Draw("pesame");
+  gV2_D0_NP_before->Draw("2same");
+  gV2_D0_before->Draw("5same");
+  hV2_D0_before->Draw("x0esame");
+  // gV2_Ds_NP_before->Draw("2same");
+  // gV2_Ds_before->Draw("5same");
+  // hV2_Ds_before->Draw("plsame");
+  texcms->Draw();
+  texpre->Draw();
+  texdata->Draw();
+  texsnn->Draw();
+  texlumi->Draw();
+  texcent->Draw();
+  legV2before->Draw();
+  c1->SaveAs(Form("plots/cV2_lumiMB_%.0f_woTheory_left.pdf", lumiMB_after));
+
+  c1 = new TCanvas("c1right", "", 600, 600);
+  hempty->Draw();
+  line->Draw();
+  gV2_Charged_after->Draw("2same");
+  gV2_Charged_stat_after->Draw("pesame");
+  gV2_D0_NP_after->Draw("2same");
+  gV2_D0_after->Draw("5same");
+  hV2_D0_after->Draw("x0esame");
+  // gV2_Ds_NP_after->Draw("2same");
+  // gV2_Ds_after->Draw("5same");
+  // hV2_Ds_after->Draw("plsame");
+  texcms->Draw();
+  texpreafter->Draw();
+  texsnn->Draw();
+  texlumiafter->Draw();
+  texcent->Draw();
+  legV2after->Draw();
+  c1->SaveAs(Form("plots/cV2_lumiMB_%.0f_woTheory_right.pdf", lumiMB_after));
+
+  //
+
+  TFile* inputPHSD = new TFile("theorypoints/TheoryCalculation/PHSD/PHSD_v2v3_interpolation_from0p5.root");
+  TGraph* gv2Dmeson5TeV_PHSD = (TGraph*)inputPHSD->Get("gv2Dmeson5TeV_PHSD_cent30to50");
+  TGraph* gv2Dmeson5TeV_SUBATECH = new TGraph("theorypoints/TheoryCalculation/SUBATECH_updated/5TeV30-50v2D_CMS.dat");
+  gv2Dmeson5TeV_SUBATECH->SetName("gv2Dmeson5TeV_SUBATECH_cent30to50");
+  TGraph* gv2Dmeson5TeV_LBT = new TGraph("theorypoints/TheoryCalculation/LBT/v2_cen-30-50.dat");
+  gv2Dmeson5TeV_LBT->SetName("gv2Dmeson5TeV_LBT_cent30to50");
+  TFile* inputTAMU = new TFile("theorypoints/TheoryCalculation/TAMU/PredictionsTAMU_Dv2_pt.root");
+  TGraphAsymmErrors* gv2Dmeson5TeV_TAMU = (TGraphAsymmErrors*)inputTAMU->Get("gv2Dmeson5TeV_TAMU_cent30to50");
+  TFile* inputCUJET3 = new TFile("theorypoints/TheoryCalculation/CUJET3_updated/CUJET_v2.root");
+  TGraphErrors* gv2Dmeson5TeV_CUJET3 = (TGraphErrors*)inputCUJET3->Get("gv2Dmeson5TeV_CUJET_cent30to50");
+  setplotD0theory(gv2Dmeson5TeV_PHSD, gv2Dmeson5TeV_SUBATECH, gv2Dmeson5TeV_LBT, gv2Dmeson5TeV_TAMU, gv2Dmeson5TeV_CUJET3);
+
+  c2 = new TCanvas("c2theory", "", 1200, 600);
+  c2->Divide(2, 1);
+
+  c2->cd(1);
+  hempty->Draw();
+  line->Draw();
+  gv2Dmeson5TeV_TAMU->Draw("4 same");
+  gv2Dmeson5TeV_CUJET3->Draw("4 same");
+  gv2Dmeson5TeV_LBT->Draw("c same");
+  gv2Dmeson5TeV_PHSD->Draw("c same");
+  gv2Dmeson5TeV_SUBATECH->Draw("c same");
+  gV2_Charged_before->Draw("2same");
+  gV2_Charged_stat_before->Draw("pesame");
+  gV2_D0_NP_before->Draw("2same");
+  gV2_D0_before->Draw("5same");
+  hV2_D0_before->Draw("x0esame");
+  // gV2_Ds_NP_before->Draw("2same");
+  // gV2_Ds_before->Draw("5same");
+  // hV2_Ds_before->Draw("plsame");
+  texcms->Draw();
+  texpre->Draw();
+  texdata->Draw();
+  texsnn->Draw();
+  texlumi->Draw();
+  texcent->Draw();
+  TLegend* legTheorybefore = new TLegend(0.45, 0.50, 0.89, 0.90);
+  xjjroot::setleg(legTheorybefore, 0.037);
+  legTheorybefore->AddEntry(gV2_Charged_before, Form("Charged hadrons, %.2f nb^{-1}", lumiMB_Charged_before), "pf");
+  legTheorybefore->AddEntry(gV2_D0_NP_before, Form("D^{0}, %.2f nb^{-1}", lumiMB_D0_before), "pf");
+  legTheorybefore->AddEntry(gv2Dmeson5TeV_CUJET3, "CUJET 3.0", "f");
+  legTheorybefore->AddEntry(gv2Dmeson5TeV_LBT, "LBT", "l");
+  legTheorybefore->AddEntry(gv2Dmeson5TeV_PHSD, "PHSD", "l");
+  legTheorybefore->AddEntry(gv2Dmeson5TeV_TAMU, "TAMU", "f");
+  legTheorybefore->AddEntry(gv2Dmeson5TeV_SUBATECH, "SUBATECH", "l");
+  legTheorybefore->Draw();
+
+  c2->cd(2);
+  hempty->Draw();
+  line->Draw();
+  gv2Dmeson5TeV_TAMU->Draw("4 same");
+  gv2Dmeson5TeV_CUJET3->Draw("4 same");
+  gv2Dmeson5TeV_LBT->Draw("c same");
+  gv2Dmeson5TeV_PHSD->Draw("c same");
+  gv2Dmeson5TeV_SUBATECH->Draw("c same");
+  gV2_Charged_after->Draw("2same");
+  gV2_Charged_stat_after->Draw("pesame");
+  gV2_D0_NP_after->Draw("2same");
+  gV2_D0_after->Draw("5same");
+  hV2_D0_after->Draw("x0esame");
+  // gV2_Ds_NP_after->Draw("2same");
+  // gV2_Ds_after->Draw("5same");
+  // hV2_Ds_after->Draw("plsame");
+  texcms->Draw();
+  texpreafter->Draw();
+  texsnn->Draw();
+  texlumiafter->Draw();
+  texcent->Draw();
+  TLegend* legTheoryafter = new TLegend(0.45, 0.50, 0.89, 0.90);
+  xjjroot::setleg(legTheoryafter, 0.037);
+  legTheoryafter->AddEntry(gV2_Charged_after, "Charged hadrons", "pf");
+  legTheoryafter->AddEntry(gV2_D0_NP_after, "D^{0}", "pf");
+  legTheoryafter->AddEntry(gv2Dmeson5TeV_CUJET3, "CUJET 3.0", "f");
+  legTheoryafter->AddEntry(gv2Dmeson5TeV_LBT, "LBT", "l");
+  legTheoryafter->AddEntry(gv2Dmeson5TeV_PHSD, "PHSD", "l");
+  legTheoryafter->AddEntry(gv2Dmeson5TeV_TAMU, "TAMU", "f");
+  legTheoryafter->AddEntry(gv2Dmeson5TeV_SUBATECH, "SUBATECH", "l");
+  legTheoryafter->Draw();
+
+  c2->SaveAs(Form("plots/cV2_lumiMB_%.0f_wTheory.pdf", lumiMB_after));
+
+
+  c1 = new TCanvas("c1theoryleft", "", 600, 600);
+  hempty->Draw();
+  line->Draw();
+  gv2Dmeson5TeV_TAMU->Draw("4 same");
+  gv2Dmeson5TeV_CUJET3->Draw("4 same");
+  gv2Dmeson5TeV_LBT->Draw("c same");
+  gv2Dmeson5TeV_PHSD->Draw("c same");
+  gv2Dmeson5TeV_SUBATECH->Draw("c same");
+  gV2_Charged_before->Draw("2same");
+  gV2_Charged_stat_before->Draw("pesame");
+  gV2_D0_NP_before->Draw("2same");
+  gV2_D0_before->Draw("5same");
+  hV2_D0_before->Draw("x0esame");
+  // gV2_Ds_NP_before->Draw("2same");
+  // gV2_Ds_before->Draw("5same");
+  // hV2_Ds_before->Draw("plsame");
+  texcms->Draw();
+  texpre->Draw();
+  texdata->Draw();
+  texsnn->Draw();
+  texlumi->Draw();
+  texcent->Draw();
+  legTheorybefore->Draw();
+  c1->SaveAs(Form("plots/cV2_lumiMB_%.0f_wTheory_left.pdf", lumiMB_after));
+
+  c1 = new TCanvas("c1theoryright", "", 600, 600);
+  hempty->Draw();
+  line->Draw();
+  gv2Dmeson5TeV_TAMU->Draw("4 same");
+  gv2Dmeson5TeV_CUJET3->Draw("4 same");
+  gv2Dmeson5TeV_LBT->Draw("c same");
+  gv2Dmeson5TeV_PHSD->Draw("c same");
+  gv2Dmeson5TeV_SUBATECH->Draw("c same");
+  gV2_Charged_after->Draw("2same");
+  gV2_Charged_stat_after->Draw("pesame");
+  gV2_D0_NP_after->Draw("2same");
+  gV2_D0_after->Draw("5same");
+  hV2_D0_after->Draw("x0esame");
+  // gV2_Ds_NP_after->Draw("2same");
+  // gV2_Ds_after->Draw("5same");
+  // hV2_Ds_after->Draw("plsame");
+  texcms->Draw();
+  texpreafter->Draw();
+  texsnn->Draw();
+  texlumiafter->Draw();
+  texcent->Draw();
+  legTheoryafter->Draw();
+  c1->SaveAs(Form("plots/cV2_lumiMB_%.0f_wTheory_right.pdf", lumiMB_after));
 
 }
 

@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdlib.h>
+#include <math.h>
 using namespace std;
 
 #include "TFile.h"
@@ -132,7 +134,10 @@ int main(int argc, char *argv[])
    Latex.SetTextSize(0.035);
    Latex.SetTextAlign(30);
    Latex.DrawLatex((BorderWidth + PanelWidth * 1.95) / TotalWidth, (BorderHeight + PanelHeight * 0.87) / TotalHeight, "0-10%, anti-kt R = 0.4, |#eta_{jet}| < 1.3");
+   if(SD == 0)
    Latex.DrawLatex((BorderWidth + PanelWidth * 1.95) / TotalWidth, (BorderHeight + PanelHeight * 0.80) / TotalHeight, "Soft drop z_{cut} = 0.1, #beta = 0.0, #DeltaR_{12} > 0.1");
+   else
+   Latex.DrawLatex((BorderWidth + PanelWidth * 1.95) / TotalWidth, (BorderHeight + PanelHeight * 0.80) / TotalHeight, "Soft drop z_{cut} = 0.5, #beta = 1.5, #DeltaR_{12} > 0.1");
 
    Latex.SetTextAlign(30);
    Latex.DrawLatex((BorderWidth + PanelWidth * 0.95) / TotalWidth, (BorderHeight + PanelHeight * 0.03) / TotalHeight, "140 < p_{T}^{jet} < 160 GeV");

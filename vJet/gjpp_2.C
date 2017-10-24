@@ -12,7 +12,7 @@
 
 #include "tiling.h"
 
-#define PROJ_UNC_COLOUR (TColor::GetColor("#E74C3C"))
+#define PROJ_UNC_COLOUR (TColor::GetColor("#e74c3c"))
 #define CURRENT_UNC_COLOUR (TColor::GetColor("#a09f93"))
 
 void set_histogram_style(TH1* h1, int style, std::vector<std::string>& option_strings);
@@ -28,16 +28,16 @@ int gammaJetPlot(const std::string input_file, const std::string sys_file, const
     TFile* sys = new TFile(sys_file.c_str(), "read");
 
     int rows = 1;
-    int columns = 2;
+    int columns = 1;
 
-    std::vector<float> margins = {0.3, 0.04, 0.15, 0.2};
+    std::vector<float> margins = {0.3, 0.04, 0.1, 0.2};
     std::vector<float> title_offsets = {1.25, 1.9};
     std::vector<float> label_offsets = {0.02, 0.015};
-    std::vector<float> latex_sizes = {0.07, 0.054, 0.054, 0.06};
+    std::vector<float> latex_sizes = {0.06, 0.045, 0.045, 0.042};
     std::vector<float> title_sizes = {0.064, 0.06};
-    std::vector<float> label_sizes = {0.054, 0.054};
+    std::vector<float> label_sizes = {0.05, 0.05};
     std::vector<float> tick_sizes = {0.025, 0.025};
-    std::vector<int> cover_options = {33, 0};
+    std::vector<int> cover_options = {0, 0};
 
     float cms_latex_size = latex_sizes[0];
     float legend_latex_size = latex_sizes[1];
@@ -51,17 +51,17 @@ int gammaJetPlot(const std::string input_file, const std::string sys_file, const
     std::vector<int> draw_sys = {2};
     std::vector<int> clear_entries = {1};
 
-    std::vector<int> l_panel = {1, 2};
-    std::vector<float> l_x1 = {0.04, 0.04};
-    std::vector<float> l_y1 = {0.64, 0.80};
-    std::vector<float> l_x2 = {0.96, 0.96};
-    std::vector<float> l_y2 = {0.88, 0.88};
+    std::vector<int> l_panel = {1};
+    std::vector<float> l_x1 = {0.04};
+    std::vector<float> l_y1 = {0.70};
+    std::vector<float> l_x2 = {0.96};
+    std::vector<float> l_y2 = {0.88};
 
-    std::vector<float> i_x = {0.95, 0.95};
-    std::vector<float> i_y = {0.50, 0.50};
+    std::vector<float> i_x = {0.95};
+    std::vector<float> i_y = {0.60};
 
     std::vector<std::string> x_titles = {"x_{j#gamma} = p^{jet}_{T}/p^{#gamma}_{T}"};
-    std::vector<std::string> y_titles = {"#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}", "#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}"};
+    std::vector<std::string> y_titles = {"#frac{1}{N_{#gamma}} #frac{dN_{j#gamma}}{dx_{j#gamma}}"};
 
     std::string hist_type = "xjg";
     std::string canvas_title = "xjg_projection_2";
@@ -245,8 +245,8 @@ int gammaJetPlot(const std::string input_file, const std::string sys_file, const
             }
 
             if (c == 0) {
-                tiler->draw_latex_on_frame(0.04, 0.91, "CMS", 6, cms_latex_size, 11, c, r);
-                tiler->draw_latex_on_frame(0.20, 0.91, "Projection", 5, cms_latex_size * 0.84, 11, c, r);
+                tiler->draw_latex_on_frame(0.04, 0.925, "CMS", 6, cms_latex_size, 11, c, r);
+                tiler->draw_latex_on_frame(0.17, 0.925, "Projection", 5, cms_latex_size * 0.84, 11, c, r);
             }
 
             // draw latex info
@@ -287,7 +287,7 @@ int gammaJetPlot(const std::string input_file, const std::string sys_file, const
             float line_pos = i_y[r*columns + c];
             int latex_align = (i_x[r*columns + c] > 0.8) ? 33 : 11;
             for (std::size_t q=0; q<plotInfo.size(); ++q) {
-                tiler->draw_latex_on_frame(i_x[r*columns + c], line_pos + info_latex_size, plotInfo[q].c_str(), 4, info_latex_size, latex_align, c, r);
+                tiler->draw_latex_on_frame(i_x[r*columns + c], line_pos + info_latex_size * 0.45 * (q == 2 || q == 4), plotInfo[q].c_str(), 4, info_latex_size, latex_align, c, r);
                 line_pos -= info_latex_size * 1.5;
             }
 
@@ -324,7 +324,7 @@ int gammaJetPlot(const std::string input_file, const std::string sys_file, const
 void set_histogram_style(TH1* h1, int style, std::vector<std::string>& option_strings) {
     switch (style) {
         case 0:     /* PbPb data 0-30% legend */
-            h1->SetLineColorAlpha(PROJ_UNC_COLOUR, 0.7);
+            h1->SetLineColorAlpha(PROJ_UNC_COLOUR, 0);
             h1->SetLineWidth(0);
             h1->SetMarkerColor(1);
             h1->SetMarkerStyle(20);
@@ -336,15 +336,15 @@ void set_histogram_style(TH1* h1, int style, std::vector<std::string>& option_st
             break;
         case 1:     /* PbPb data 0-30% */
             h1->SetLineColor(1);
-            h1->SetLineWidth(0);
+            // h1->SetLineWidth(0);
             h1->SetMarkerColor(1);
             h1->SetMarkerStyle(20);
-            h1->SetMarkerSize(1.2);
+            h1->SetMarkerSize(1.0);
             option_strings.push_back("same e x0");
             option_strings.push_back("p");
             break;
         case 2:     /* PbPb data 30-100% legend */
-            h1->SetLineColorAlpha(PROJ_UNC_COLOUR, 0.7);
+            h1->SetLineColorAlpha(PROJ_UNC_COLOUR, 0);
             h1->SetLineWidth(0);
             h1->SetMarkerColor(1);
             h1->SetMarkerStyle(21);
@@ -359,7 +359,7 @@ void set_histogram_style(TH1* h1, int style, std::vector<std::string>& option_st
             h1->SetLineWidth(0);
             h1->SetMarkerColor(1);
             h1->SetMarkerStyle(21);
-            h1->SetMarkerSize(1.2);
+            h1->SetMarkerSize(1.0);
             option_strings.push_back("same e x0");
             option_strings.push_back("p");
             break;
