@@ -648,13 +648,13 @@ void projection_W_Ach()
    entry->SetMarkerSize(1);
    entry->SetTextFont(62);
    leg->Draw();
-   TLatex *   tex = new TLatex(0.22,0.9596354,"#sqrt{s_{NN}} = 5.02 TeV");
+   TLatex *   tex = new TLatex(0.22,0.9596354,"#sqrt{s_{NN}} = 8.16 TeV");
 tex->SetNDC();
    tex->SetTextFont(43);
    tex->SetTextSize(30);
    tex->SetLineWidth(2);
    tex->Draw();
-      tex = new TLatex(0.96,0.96,"PbPb 10 nb^{-1}");
+      tex = new TLatex(0.96,0.96,"pPb 2000 nb^{-1}");
 tex->SetNDC();
    tex->SetTextAlign(31);
    tex->SetTextFont(43);
